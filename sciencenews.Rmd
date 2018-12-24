@@ -548,7 +548,7 @@ There are limitations to these conclusions, which include the fact that religiou
 
 Click here to see the code: https://github.com/lama-ahmad/DataAnalysis-R/blob/master/sciencenews.Rmd
 
-```{r, echo = FALSE}
+```{r, echo = FALSE, results = 'asis'}
 
 ## APPENDICES (TABLES)
 
