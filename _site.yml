@@ -1,0 +1,8 @@
+name: "Data Analysis in R"
+navbar:
+  title: "Data Analysis in R"
+  left:
+    - text: "Home"
+      href: index.html
+    - text: "Science News"
+      href: sciencenews.html
