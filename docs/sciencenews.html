@@ -287,17 +287,142 @@ $(document).ready(function () {
 <p>Hypothesis 3 which stated that: “There are differences among different groups of people who engage with science news on social media” was upheld, especially with regard to Age groups (Young vs. Old), Party Affiliation, and Education Level. Given these results, it is still unclear what the implications of science news engagement via social media are. It depends on the user’s discretion of what is reliable vs unreliable information, and what content platforms choose to prioritize, as well as the quality of the science journalism that is available and widely circulated on social media platforms. Further research would need to be conducted to understand the behaviors of different groups when engaging with science news on social media.</p>
 <p>There are limitations to these conclusions, which include the fact that religious service attendance does not necessarily indicate religiosity, as different religions also have different ways of expressing religiosity that do not necessarily entail going to a religious service. However, it is a good indicator for common monotheistic religions pracrticed in the United States. There is also the issue of social desirability bias in self reported survey questions, especially with regard to frequency and interest in science news. I attempted to mitigate that by using both measures of interest as well as actual frequency of reading science news.</p>
 <p>Click here to see the code: <a href="https://github.com/lama-ahmad/DataAnalysis-R/blob/master/sciencenews.Rmd" class="uri">https://github.com/lama-ahmad/DataAnalysis-R/blob/master/sciencenews.Rmd</a></p>
-<p>Call: glm(formula = topicint ~ rsatt, family = binomial(link = “logit”), data = ps, na.action = na.exclude)</p>
-<p>Deviance Residuals: Min 1Q Median 3Q Max<br />
--1.6453 -1.6061 0.7731 0.8025 0.8025</p>
-<p>Coefficients: Estimate Std. Error z value Pr(&gt;|z|)<br />
-(Intercept) 0.96777 0.05705 16.964 &lt;2e-16 *** rsattInfrequently 0.08697 0.08336 1.043 0.297<br />
-rsattNever 0.05100 0.09028 0.565 0.572<br />
-— Signif. codes: 0 ‘<em><strong>’ 0.001 ’</strong>’ 0.01 ’</em>’ 0.05 ‘.’ 0.1 ‘’ 1</p>
-<p>(Dispersion parameter for binomial family taken to be 1)</p>
-<pre><code>Null deviance: 4640.6  on 4000  degrees of freedom</code></pre>
-<p>Residual deviance: 4639.5 on 3998 degrees of freedom (23 observations deleted due to missingness) AIC: 4645.5</p>
-<p>Number of Fisher Scoring iterations: 4</p>
+<table style="text-align:center">
+<caption>
+<strong>Interest in Science News by Religiosity</strong>
+</caption>
+<tr>
+<td colspan="2" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+<em>Dependent variable:</em>
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td colspan="1" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+topicint
+</td>
+</tr>
+<tr>
+<td colspan="2" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+rsattInfrequently
+</td>
+<td>
+0.087
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+(0.083)
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+rsattNever
+</td>
+<td>
+0.051
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+(0.090)
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Constant
+</td>
+<td>
+0.968<sup>***</sup>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+(0.057)
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td colspan="2" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Observations
+</td>
+<td>
+4,001
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Log Likelihood
+</td>
+<td>
+-2,319.756
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Akaike Inf. Crit.
+</td>
+<td>
+4,645.512
+</td>
+</tr>
+<tr>
+<td colspan="2" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+<em>Note:</em>
+</td>
+<td style="text-align:right">
+<sup><em></sup>p&lt;0.1; <sup><strong></sup>p&lt;0.05; <sup></strong></em></sup>p&lt;0.01
+</td>
+</tr>
+</table>
 <table style="text-align:center">
 <caption>
 <strong>Reading Science News by Religiosity</strong>
