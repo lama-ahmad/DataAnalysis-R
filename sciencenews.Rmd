@@ -198,6 +198,8 @@ To have an informed opinion about these issues it is important to read well-writ
 
 The survey data used is from the 2017 Pew Research Center survey of U.S. adults about science news and information. The survey had a sample size of 4,024 adults, 18 years of age or older, living in all 50 U.S. states and the District of Columbia. Retrieved from: http://www.journalism.org/dataset/2017-pew-research-center-science-and-news-survey/
 
+Click here to see the code for this analysis: https://github.com/lama-ahmad/DataAnalysis-R/blob/master/sciencenews.Rmd
+
 ## Hypotheses
 
 Politicized identities including racial identities, political party affiliation and ideology, and religious groups are hypothesized to engage with social media and science concepts in different ways. I am interested in how these hypotheses intersect, and in this paper I will test the following ideas:
@@ -229,6 +231,8 @@ prati <- data.frame(
 
 ggplot(subset(prati, Type != "Refused")) + geom_pointrange(aes(x = Type, ymin = lower, ymax = upper, y = mid)) + ylim(0.65, 0.70) + theme_bw() + labs(x = "Religious Service Attendance Frequency", y = "Predicted Proabability of Interest in Science News", title = "Interest in Science News by Religiosity")
 
+stargazer(glm.1.1, header=F, title ="Interest in Science News by Religiosity", type = "html", out="sciencenews.html", out.header=TRUE)
+
 ```
 
 In terms of probability of reading science news, I recoded the survey question to categorize people who frequently read science news (a few time or multiple times a week), as frequent readers (1), and others who answered a few times a month or less as infrequent readers (0). In this case, people who frequently or infrequently attend religious services have a 59% probability on avereage of reading science news. People who never attend religious services have a 60% probability on average of reading science news. However, what is interesting is looking at the confidence intervals of the frequent vs infrequent religious service attendees - frequent attendees can go as low as 58% probability of reading science news and infrequent attendees can go as high as a 60% probability of reading science news. 
@@ -250,6 +254,8 @@ pratr <- data.frame(
 )
 
 ggplot(subset(pratr, Type != "Refused")) + geom_pointrange(aes(x = Type, ymin = lower, ymax = upper, y = mid)) + theme_bw() + labs(x = "Religious Service Attendance Frequency", y = "Predicted Proabability of Reading Science News", title = "Frequency of Reading Science News by Religiosity")
+
+stargazer(glm.1.1.2, header=F, title ="Reading Science News by Religiosity", type = "html", out="sciencenews.html", out.header=TRUE)
 
 ```
 
@@ -274,7 +280,7 @@ pratig <- data.frame(
 ggplot(subset(pratig, Type != "Refused")) + geom_pointrange(aes(x = Type, ymin = lower, ymax = upper, y = mid)) +
   theme_bw() + theme(axis.text.x = element_text(angle = 45, vjust = .5)) + labs(x = "Gender & Religious Service Attendance Frequency", y = "Predicted Proabability of Interest in Science News", title = "Interest in Science News by Religiosity & Gender")
 
-
+stargazer(glm.1.2, header = F, title = "Interest in Science News by Religiosity and Gender", type = "html", out="sciencenews.html", out.header=TRUE)
 ```
 
 Women experience the greatest variation in likelihood of reading science news compared to Men. Women who infrequently attend religious services have a 57% probability of reading science news, women who frequently attend religious services have a 58% probability of reading science news, and women who never attend religious services have a 60% probability of reading science news. By contrast, men have an avereage of 61% probability of reading science news across the board. 
@@ -296,6 +302,8 @@ pratrg <- data.frame(
 )
 
 ggplot(subset(pratrg, Type != "Refused")) + geom_pointrange(aes(x = Type, ymin = lower, ymax = upper, y = mid)) + theme_bw() + theme(axis.text.x = element_text(angle = 45, vjust = .5)) + labs(x = "Gender & Religious Service Attendance Frequency", y = "Predicted Proabability of Reading Science News", title = "Frequency of Reading Science News by Religiosity & Gender")
+
+stargazer(glm.1.2.1, header = F, title = "Reading Science News by Religiosity and Gender", type = "html", out="sciencenews.html", out.header=TRUE)
 
 ```
 
@@ -327,6 +335,7 @@ pratied <- data.frame(
 ggplot(subset(pratied, Type != "Refused")) + geom_pointrange(aes(x = Type, ymin = lower, ymax = upper, y = mid)) +
   theme_bw() + theme(axis.text.x = element_text(angle = 90, vjust = .5)) + labs(x = "Level of Education & Religious Service Attendance Frequency", y = "Predicted Proabability of Interest in Science News", title = "Interest in Science News by Religiosity & Education")
 
+stargazer(glm.1.5, header = F,  title = "Interest in Science News by Religiosity and Education", type = "html", out="sciencenews.html", out.header=TRUE)
 ```
 
 People who have a bachelor's degree or higher have the highest probability of being frequent readers of science news at about 62% if they frequently attend religious services, and 64% if they infrequently or never attend religious services. 
@@ -357,6 +366,8 @@ pratred <- data.frame(
 
 ggplot(subset(pratred, Type != "Refused")) + geom_pointrange(aes(x = Type, ymin = lower, ymax = upper, y = mid)) +
   theme_bw() + theme(axis.text.x = element_text(angle = 90, vjust = .5)) + labs(x = "Level of Education & Religious Service Attendance Frequency", y = "Predicted Proabability of Reading Science News", title = "Frequency of Reading Science News by Religiosity & Education")
+
+stargazer(glm.1.5.1, header = F, title = "Reading Science News by Religiosity and Education", type = "html", out="sciencenews.html", out.header=TRUE)
 
 ```
 
@@ -391,7 +402,7 @@ pratie <- data.frame(
 ggplot(subset(pratie, Type != "Refused")) + geom_pointrange(aes(x = Type, ymin = lower, ymax = upper, y = mid)) +
   theme_bw() + theme(axis.text.x = element_text(angle = 90, vjust = .5))  + labs(x = "Ethnicity & Religious Service Attendance Frequency", y = "Predicted Proabability of Interest in Science News", title = "Interest in Science News by Religiosity & Ethnicity")
 
-
+stargazer(glm.1.3, header = F, title = "Interest in Science News by Religiosity and Ethnicity", type = "html", out="sciencenews.html", out.header=TRUE)
 ```
 
 
@@ -424,6 +435,7 @@ pratir <- data.frame(
 ggplot(subset(pratir, Type != "Refused")) + geom_pointrange(aes(x = Type, ymin = lower, ymax = upper, y = mid)) +
   theme_bw() + theme(axis.text.x = element_text(angle = 90, vjust = .5)) + labs(x = "Geographic Region & Religious Service Attendance Frequency", y = "Predicted Proabability of Interest Science News", title = "Interest in Science News by Religiosity & Region")
 
+stargazer(glm.1.4, header = F,  title = "Interest in Science News by Religiosity and Region", type = "html", out="sciencenews.html", out.header=TRUE)
 ```
 
 ## HYOPTHESIS 2: Interest in Science News by Party Affiliation
@@ -448,6 +460,7 @@ ppti <- data.frame(
 
 ggplot(subset(ppti, Type != "Refused")) + geom_pointrange(aes(x = Type, ymin = lower, ymax = upper, y = mid)) + theme_bw() + labs(x = "Party Affiliation", y = "Predicted Proabability of Interest in Science News", title = "Interest in Science News by Party Affiliation")
 
+stargazer(glm.2.1, header = F,  title = "Interest in Science News by Party Affiliation", type = "html", out="sciencenews.html", out.header=TRUE)
 ```
 
 Democrats and Independents had an average of 60% probability of being frequent readers of science news. Republicans had an average of 58% probability of being frequent readers of science news. People who indicated their party affiliation as 'Something Else' had an avereage 67% probability of being frequent readers of science news. 
@@ -485,6 +498,7 @@ lm.3.1 <- lm(SMScore ~ PPREG4, ps2)
 
 ggplot(ps2, aes(x=PPREG4, y=SMScore)) + geom_boxplot() + theme_bw() + labs(x = "Geographic Region", y = "Social Media Science News Engagement Score", title = "Social Media Science News Engagement by Region")
 
+stargazer(lm.3.1, header = F, title = "Social Media Science News Engagement by Region", type = "html", out="sciencenews.html", out.header=TRUE)
 ```
 
 There are no significant differences in SMScore by gender. Men have an average score of 10.91, and women have an average score of 10.82.
@@ -495,6 +509,7 @@ lm.3.2 <- lm(SMScore ~ PPGENDER, ps2)
 
 ggplot(ps2, aes(x=PPGENDER, y=SMScore)) + geom_boxplot() + theme_bw() + labs(x = "Gender", y = "Social Media Science News Engagement Score", title = "Social Media Science News Engagement by Gender")
 
+stargazer(lm.3.2, header = F, title = "Social Media Science News Engagement by Gender", type = "html", out="sciencenews.html", out.header=TRUE)
 ```
 
 There are no significant differences in the average social media science news engaegment score among people with different frequencies of religious service attendance. People who frequently attend religious services have an average score of 10.76. People who infrequently attend religious services have an average score of 10.82. People who never attend religious services have an average score of 11.03. 
@@ -505,6 +520,7 @@ lm.3.3 <- lm(SMScore ~ rsatt, subset(ps2, rsatt != "Refused"))
 
 ggplot(subset(ps2, rsatt != "Refused"), aes(x=rsatt, y=SMScore)) + geom_boxplot() + theme_bw() + labs(x = "Frequency of Religious Service Attendance", y = "Social Media Science News Engagement Score", title = "Social Media Science News Engagement by Religiosity")
 
+stargazer(lm.3.3, header = F, title = "Social Media Science News Engagement by Religiosity", type = "html", out="sciencenews.html", out.header=TRUE)
 ```
 
 There are significant differences in the average social media science news engagement score among political party affiliations. Republicans have the lowest average score at 10.59. Democrats have the highest average score of 11.05. Independents have a score of 10.94.
@@ -515,6 +531,7 @@ lm.3.4 <- lm(SMScore ~ PARTY, subset(ps2, PARTY != "Refused"))
 
 ggplot(subset(ps2, PARTY != "Refused"), aes(x=PARTY, y=SMScore)) + geom_boxplot() + theme_bw() + labs(x = "Political Party Affiliation", y = "Social Media Science News Engagement Score", title = "Social Media Science News Engagement by Party Affiliation")
 
+stargazer(lm.3.4, header = F, title = "Social Media Science News Engagement by Party Affiliation", type = "html", out="sciencenews.html", out.header=TRUE)
 ```
 
 People with a bachelor's degree or higher and people with some college education have a significant difference in the social media science news engagement score, people who have a high school degree or less are less certain. On average, people with less than a high school degree have a score of 10.50. People with a high school degree have an average score of 10.38. People with some college have an average score of 10.92, and people with a bachelor's degree or higher have an average score of 11.5.
@@ -525,6 +542,7 @@ lm.3.5 <- lm(SMScore ~ PPEDUCAT, subset(ps2, PPEDUCAT != "Refused"))
 
 ggplot(subset(ps2, PPEDUCAT != "Refused"), aes(x=PPEDUCAT, y=SMScore)) + geom_boxplot() + theme_bw() + labs(x = "Level of Education", y = "Social Media Science News Engagement Score", title = "Social Media Science News Engagement by Education")
 
+stargazer(lm.3.5, header = F, title = "Social Media Science News Engagement by Education", type = "html", out="sciencenews.html", out.header=TRUE)
 ```
 
 Younger age groups (including 18-24, 25 - 34, and 35 - 44) tend to engage more with science news on social media than older age groups. On average, 18-24 year olds have a SMSscore of 11.03. 25-34 year olds have a score of 11.50, and 35 - 44 year olds have a score of 11.22. People age 45 - 54 have a score of 10.70, age 65 - 74 have a score of 10.46.
@@ -534,6 +552,8 @@ Younger age groups (including 18-24, 25 - 34, and 35 - 44) tend to engage more w
 lm.3.6 <- lm(SMScore ~ ppagecat, subset(ps2, ppagecat != "Refused"))
 
 ggplot(subset(ps2, ppagecat != "Refused"), aes(x=ppagecat, y=SMScore)) + geom_boxplot() + theme_bw() + labs(x = "Age Category", y = "Social Media Science News Engagement Score", title = "Social Media Science News Engagement by Age Category")
+
+stargazer(lm.3.6, header = F, title = "Social Media Science News Engagement by Age Category", type = "html", out="sciencenews.html", out.header=TRUE)
 ```
 
 ### CONCLUSIONS 
@@ -548,25 +568,4 @@ There are limitations to these conclusions, which include the fact that religiou
 
 Click here to see the code: https://github.com/lama-ahmad/DataAnalysis-R/blob/master/sciencenews.Rmd
 
-```{r, echo = FALSE, results = 'asis'}
 
-## APPENDICES (TABLES)
-
-stargazer(glm.1.1, header=F, title ="Interest in Science News by Religiosity", type = "html", out="arsenicinwells.html", out.header=TRUE)
-stargazer(glm.1.1.2, header=F, title ="Reading Science News by Religiosity", type = "html", out="arsenicinwells.html", out.header=TRUE)
-stargazer(glm.1.2, header=F, title ="Interest in Science News by Religiosity and Gender", type = "html", out="arsenicinwells.html", out.header=TRUE)
-stargazer(glm.1.2.1, header = F, title = "Reading Science News by Religiosity and Gender", type = "html", out="arsenicinwells.html", out.header=TRUE)
-stargazer(glm.1.5, header = F,  title = "Interest in Science News by Religiosity and Education", type = "html", out="arsenicinwells.html", out.header=TRUE)
-stargazer(glm.1.5.1, header = F, title = "Reading Science News by Religiosity and Education", type = "html", out="arsenicinwells.html", out.header=TRUE)
-stargazer(glm.1.3, header = F, title = "Interest in Science News by Religiosity and Ethnicity", type = "html", out="arsenicinwells.html", out.header=TRUE)
-stargazer(glm.1.4, header = F,  title = "Interest in Science News by Religiosity and Region", type = "html", out="arsenicinwells.html", out.header=TRUE)
-stargazer(glm.2.1, header = F,  title = "Interest in Science News by Party Affiliation", type = "html", out="arsenicinwells.html", out.header=TRUE)
-stargazer(glm.2.1.1, header = F,  title = "Frequency of Reading Science News by Party Affiliation", type = "html", out="arsenicinwells.html", out.header=TRUE)
-stargazer(lm.3.1, header = F, title = "Social Media Science News Engagement by Region", type = "html", out="arsenicinwells.html", out.header=TRUE)
-stargazer(lm.3.2, header = F, title = "Social Media Science News Engagement by Gender", type = "html", out="arsenicinwells.html", out.header=TRUE)
-stargazer(lm.3.3, header = F, title = "Social Media Science News Engagement by Religiosity", type = "html", out="arsenicinwells.html", out.header=TRUE)
-stargazer(lm.3.4, header = F, title = "Social Media Science News Engagement by Party Affiliation", type = "html", out="arsenicinwells.html", out.header=TRUE)
-stargazer(lm.3.5, header = F, title = "Social Media Science News Engagement by Education", type = "html", out="arsenicinwells.html", out.header=TRUE)
-stargazer(lm.3.6, header = F, title = "Social Media Science News Engagement by Age Category", type = "html", out="arsenicinwells.html", out.header=TRUE)
-
-```

@@ -9,3 +9,5 @@ navbar:
       href: sciencenews.html
     - text: "Arsenic in Wells"
       href: arsenicinwells.html
+    - text: "Financial Well Being"
+      href: financialwellbeing.html

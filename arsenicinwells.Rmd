@@ -16,6 +16,7 @@ wells2 <- wells[which(wells$anyArs == "TRUE"),]
 
 library(ggplot2)
 library(arm)
+library(stargazer)
 ```
 
 ### PART 1 
@@ -242,33 +243,27 @@ In part 2, I subsetted the data to only include responses in which anyArs was eq
 
 In all questions, if there were results that seemed to be miscoded or that I could not infer what they meant from the code book, I did not include them in my predictions for Switching and only included variables that I could be sure of what the response meant based on the code book. 
 
-```{r}
-#Relationship to Well Owner / Predict Switch
-summary(glm.2.1)
+``` {r, echo = FALSE, results = 'asis'}
+stargazer(glm.2.1, header = F, title = "Relationship to Well Owner / Predict Switch", type = "html", out="arsenicinwells.html", out.header=TRUE)
 ```
 
-```{r}
-#Reported Status of Well / Predict Switch
-summary(glm.2.2)
+``` {r, echo = FALSE, results = 'asis'}
+stargazer(glm.2.2, header = F, title = "Reported Status of Well / Predict Switch", type = "html", out="arsenicinwells.html", out.header=TRUE)
 ```
 
-```{r}
-#How know status of well / Predict Switch
-summary(glm.2.3)
+``` {r, echo = FALSE, results = 'asis'}
+stargazer(glm.2.3, header = F, title = "How know status of well / Predict Switch", type = "html", out="arsenicinwells.html", out.header=TRUE)
 ```
 
-```{r}
-#CU Medical Card / Predict Switch
-summary(glm.2.4)
+``` {r, echo = FALSE, results = 'asis'}
+stargazer(glm.2.4, header = F, title = "CU Medical Card / Predict Switch", type = "html", out="arsenicinwells.html", out.header=TRUE)
 ```
 
-```{r}
-#Old Stat Well / Predict Switch
-summary(glm.2.7)
+``` {r, echo = FALSE, results = 'asis'}
+stargazer(glm.2.7, header = F, title = "Old Stat Well / Predict Switch", type = "html", out="arsenicinwells.html", out.header=TRUE)
 ```
 
-```{r}
-#New Stat Well / Predict Switch
-summary(glm.2.6)
+``` {r, echo = FALSE, results = 'asis'}
+stargazer(glm.2.7, header = F, title = "New Stat Well / Predict Switch", type = "html", out="arsenicinwells.html", out.header=TRUE)
 ```
 

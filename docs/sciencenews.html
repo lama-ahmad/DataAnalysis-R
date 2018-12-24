@@ -190,6 +190,9 @@ $(document).ready(function () {
 <li>
   <a href="arsenicinwells.html">Arsenic in Wells</a>
 </li>
+<li>
+  <a href="financialwellbeing.html">Financial Well Being</a>
+</li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         
@@ -214,6 +217,7 @@ $(document).ready(function () {
 <p>There are various issues that relate to science and technology in the political sphere today. We see many political actors on various sides of science related issues. For example, one of the most contentious issues today is climate change. Other issues that are visible include the use of natural gas, vaccinations, the ethics of genetic modification, and technology and data privacy.</p>
 <p>To have an informed opinion about these issues it is important to read well-written and reliable content about scientific advancements and issues. Social media has certainly changed the way we consume news (including science news). While on one hand social media could be making conttent more accessible to a broader audience, it is also more difficult to discern what is reliable content vs what is propaganda.</p>
 <p>The survey data used is from the 2017 Pew Research Center survey of U.S. adults about science news and information. The survey had a sample size of 4,024 adults, 18 years of age or older, living in all 50 U.S. states and the District of Columbia. Retrieved from: <a href="http://www.journalism.org/dataset/2017-pew-research-center-science-and-news-survey/" class="uri">http://www.journalism.org/dataset/2017-pew-research-center-science-and-news-survey/</a></p>
+<p>Click here to see the code for this analysis: <a href="https://github.com/lama-ahmad/DataAnalysis-R/blob/master/sciencenews.Rmd" class="uri">https://github.com/lama-ahmad/DataAnalysis-R/blob/master/sciencenews.Rmd</a></p>
 </div>
 <div id="hypotheses" class="section level2">
 <h2>Hypotheses</h2>
@@ -227,66 +231,7 @@ $(document).ready(function () {
 <div id="hypothesis-1-religiosity-and-science-news" class="section level2">
 <h2>HYPOTHESIS 1: Religiosity and Science News</h2>
 <p>Oveall, there is not a significant relationship between religiosity (measured by frequency of attending religious services) and interest in science news. For the purposes of this analysis, I recoded the interest likert scale to interested / not interested as a binary variable in order to use a logistic regression to calculate the probability of being interested in science news based on frequency of attending religious services. On average, people who frequently, infrequently, and never attend to religious services have a 68% probability of being interested in science news.</p>
-<p><img src="sciencenews_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
-<p>In terms of probability of reading science news, I recoded the survey question to categorize people who frequently read science news (a few time or multiple times a week), as frequent readers (1), and others who answered a few times a month or less as infrequent readers (0). In this case, people who frequently or infrequently attend religious services have a 59% probability on avereage of reading science news. People who never attend religious services have a 60% probability on average of reading science news. However, what is interesting is looking at the confidence intervals of the frequent vs infrequent religious service attendees - frequent attendees can go as low as 58% probability of reading science news and infrequent attendees can go as high as a 60% probability of reading science news.</p>
-<p><img src="sciencenews_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
-<p>I looked at whether frequency of religious attendance and the probability of reading science news depended on gender. While the results again showed that there is not a significant relationship between frequency of religious attendance and probability of reporting interest in science news, it is notable that women had a lower probability than men of being interested in science news across the board. On average, women have a 2% lower probability than men of being interested in science news.</p>
-<p><img src="sciencenews_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
-<p>Women experience the greatest variation in likelihood of reading science news compared to Men. Women who infrequently attend religious services have a 57% probability of reading science news, women who frequently attend religious services have a 58% probability of reading science news, and women who never attend religious services have a 60% probability of reading science news. By contrast, men have an avereage of 61% probability of reading science news across the board.</p>
-<p><img src="sciencenews_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
-<p>People who have a bachelor’s degree or higher have the highest probability of being interested in science news at about 70% on average regardless of frequency of religious service attendance.</p>
-<p>People who have some college education have a 67% average probability of being interested in science news if they infrequently attend religious services, and a 68% average probability of being interested in science news if they frequently or never attend religious services.</p>
-<p>People who have a high school education have a 65% average probability of being interested in science news across all frequencies of attending religious services.</p>
-<p>People who have less than a high school education that have never or frequently attend religious services have a 64% average probability of being interested in science news, and people who infrequently attend religious services have a 65% average probability of being interested in science news.</p>
-<p><img src="sciencenews_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
-<p>People who have a bachelor’s degree or higher have the highest probability of being frequent readers of science news at about 62% if they frequently attend religious services, and 64% if they infrequently or never attend religious services.</p>
-<p>People who have some college education have a 60% average probability of being frequent readers of science news if they frequently or infrequently attend religious services, and a 63% average probability of being frequent readers of science news if they never attend religious services.</p>
-<p>People who have a high school education have a 56% average probability of being frequent readers of science news if they attend religious services frequently, and a 57% average probability of being frequent readers of science news if they attend religious services infrequently or never.</p>
-<p>People who have less than a high school education that infrequently or frequently attend religious services have a 58% average probability of being frequent readers of science news, and a 57% average probability of being frequent readers of science news if they never attend religious services.</p>
-<p><img src="sciencenews_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
-<p>Although the differences are not statistically significant, there are some interesting patterns that emerge when we look at frequency of religious service attendance and interest in science news by ethnicity.</p>
-<p>The least change happens across White people. They are 68% likely to be interested in science news across all frequencies.</p>
-<p>Black people who frequently attend religious services are 66% likely to be interested in science news, Black people who infrequently attend religious services are 68% likely to be interested in science news, and black people who never attend religious services are 65% likely to be interested in science news.</p>
-<p>People who are categorized as other are 67% likely to be interested in science news if they frequently attend religious services, 71% likely to be interested in science news if they infrequently attend religious services, and 66% likely to be interested in science news if they never attend religious services.</p>
-<p>People who are Hispanic are 67% likely to be interested in science news if they frequently attend religious services, 69% likely to be interested in science news if they infrequently attend religious services, and 68% likely to be interested in science news if they never attend religious services.</p>
-<p>For people who are 2+ Races and frequently attend religious services, they are 66% on average likely to be interested in science news, infrequently and never 67% on average likely to be interested in science news</p>
-<p><img src="sciencenews_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
-<p>Breaking up the data by region (Northeast, Midwest, South, and West) also yields some interesting results.</p>
-<p>People in the West who infrequently and never attend religous services have the highest probability of being interested in science news. People in the West who infrequently and never attend religious services have a 71% or 70% probability on average of being interested in science news.</p>
-<p>People in the South do not experience much change in probability of being interested in science news whether they frequently, infrequently, or never attend religious services. They all have a 68% probability on average of being interested in science news.</p>
-<p>People in the Midwest who frequently and infrequently attend religious services have a 67% probability on average of being interested in science news. Interestingly, people in the Midwest who never attend religious services have a 66% probability on average of being interested in science news.</p>
-<p>There is a similar trend in the Northeast, where people who frequently and infrequently attend religious services have a 68% probability on average of being interested in science news. Peole in the Northeast who never attend religious services have a 67% probability on average of being interested in science news.</p>
-<p><img src="sciencenews_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
-</div>
-<div id="hyopthesis-2-interest-in-science-news-by-party-affiliation" class="section level2">
-<h2>HYOPTHESIS 2: Interest in Science News by Party Affiliation</h2>
-<p>Democrats and Independents had an average of 68% probability of being interested in science news. Republicans had an average of 66% probability of being interested in science news. People who indicated their party affiliation as ‘Something Else’ had an avereage of 67% probability of being interested in science news.</p>
-<p><img src="sciencenews_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
-<p>Democrats and Independents had an average of 60% probability of being frequent readers of science news. Republicans had an average of 58% probability of being frequent readers of science news. People who indicated their party affiliation as ‘Something Else’ had an avereage 67% probability of being frequent readers of science news.</p>
-<p><img src="sciencenews_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
-</div>
-<div id="hypothesis-3-social-media-science-news-engagement-differences" class="section level2">
-<h2>HYPOTHESIS 3: Social Media Science News Engagement Differences</h2>
-<p>The social media engagement score variable (SMScore) encompasses responses about frequency of social media use, the types of science accounts a person follows, and their engagement with social media science news posts into a numeric score ranging from 0 to 17. 0 is the least engaged with science news via social media, while 17 is the most engaged with science news via social media.</p>
-<p>There are no significant differences in SMScore by region. On average, the Northeast has a score of 10.63, the Midwest has a score of 10.83, the South has a score of 10.91, and the West has a score of 10.99.</p>
-<p><img src="sciencenews_files/figure-html/unnamed-chunk-14-1.png" width="672" /></p>
-<p>There are no significant differences in SMScore by gender. Men have an average score of 10.91, and women have an average score of 10.82.</p>
-<p><img src="sciencenews_files/figure-html/unnamed-chunk-15-1.png" width="672" /></p>
-<p>There are no significant differences in the average social media science news engaegment score among people with different frequencies of religious service attendance. People who frequently attend religious services have an average score of 10.76. People who infrequently attend religious services have an average score of 10.82. People who never attend religious services have an average score of 11.03.</p>
-<p><img src="sciencenews_files/figure-html/unnamed-chunk-16-1.png" width="672" /></p>
-<p>There are significant differences in the average social media science news engagement score among political party affiliations. Republicans have the lowest average score at 10.59. Democrats have the highest average score of 11.05. Independents have a score of 10.94.</p>
-<p><img src="sciencenews_files/figure-html/unnamed-chunk-17-1.png" width="672" /></p>
-<p>People with a bachelor’s degree or higher and people with some college education have a significant difference in the social media science news engagement score, people who have a high school degree or less are less certain. On average, people with less than a high school degree have a score of 10.50. People with a high school degree have an average score of 10.38. People with some college have an average score of 10.92, and people with a bachelor’s degree or higher have an average score of 11.5.</p>
-<p><img src="sciencenews_files/figure-html/unnamed-chunk-18-1.png" width="672" /></p>
-<p>Younger age groups (including 18-24, 25 - 34, and 35 - 44) tend to engage more with science news on social media than older age groups. On average, 18-24 year olds have a SMSscore of 11.03. 25-34 year olds have a score of 11.50, and 35 - 44 year olds have a score of 11.22. People age 45 - 54 have a score of 10.70, age 65 - 74 have a score of 10.46.</p>
-<p><img src="sciencenews_files/figure-html/unnamed-chunk-19-1.png" width="672" /></p>
-<div id="conclusions" class="section level3">
-<h3>CONCLUSIONS</h3>
-<p>Hypothesis 1 which stated that: “As frequency of religious service attendance increases, interest in science news decreases and frequency of reading science news decreases” was not upheld. Religious service attendance alone did not do a good job of predicting interest in science news or reading science news. When interacting religious service attendance with other variables such as Gender or Education, we see a more nuanced picture of how religiosity could be interacting with other variables and thus affecting science news consumption, but over all religiosity does not seem to have an effect on interest and reading science news.</p>
-<p>Hypothesis 2 which stated that: “There are differences across political party affiliation in terms of interest in science news and frequency of reading science news” was upheld, we see that Democrats and Independents and people who identify as Something Else have a higher probability of both being interested in science news and reading science news. The results of the logistic regression were significant in this case.</p>
-<p>Hypothesis 3 which stated that: “There are differences among different groups of people who engage with science news on social media” was upheld, especially with regard to Age groups (Young vs. Old), Party Affiliation, and Education Level. Given these results, it is still unclear what the implications of science news engagement via social media are. It depends on the user’s discretion of what is reliable vs unreliable information, and what content platforms choose to prioritize, as well as the quality of the science journalism that is available and widely circulated on social media platforms. Further research would need to be conducted to understand the behaviors of different groups when engaging with science news on social media.</p>
-<p>There are limitations to these conclusions, which include the fact that religious service attendance does not necessarily indicate religiosity, as different religions also have different ways of expressing religiosity that do not necessarily entail going to a religious service. However, it is a good indicator for common monotheistic religions pracrticed in the United States. There is also the issue of social desirability bias in self reported survey questions, especially with regard to frequency and interest in science news. I attempted to mitigate that by using both measures of interest as well as actual frequency of reading science news.</p>
-<p>Click here to see the code: <a href="https://github.com/lama-ahmad/DataAnalysis-R/blob/master/sciencenews.Rmd" class="uri">https://github.com/lama-ahmad/DataAnalysis-R/blob/master/sciencenews.Rmd</a></p>
+<img src="sciencenews_files/figure-html/unnamed-chunk-4-1.png" width="672" />
 <table style="text-align:center">
 <caption>
 <strong>Interest in Science News by Religiosity</strong>
@@ -423,6 +368,8 @@ Akaike Inf. Crit.
 </td>
 </tr>
 </table>
+<p>In terms of probability of reading science news, I recoded the survey question to categorize people who frequently read science news (a few time or multiple times a week), as frequent readers (1), and others who answered a few times a month or less as infrequent readers (0). In this case, people who frequently or infrequently attend religious services have a 59% probability on avereage of reading science news. People who never attend religious services have a 60% probability on average of reading science news. However, what is interesting is looking at the confidence intervals of the frequent vs infrequent religious service attendees - frequent attendees can go as low as 58% probability of reading science news and infrequent attendees can go as high as a 60% probability of reading science news.</p>
+<img src="sciencenews_files/figure-html/unnamed-chunk-5-1.png" width="672" />
 <table style="text-align:center">
 <caption>
 <strong>Reading Science News by Religiosity</strong>
@@ -559,6 +506,8 @@ Akaike Inf. Crit.
 </td>
 </tr>
 </table>
+<p>I looked at whether frequency of religious attendance and the probability of reading science news depended on gender. While the results again showed that there is not a significant relationship between frequency of religious attendance and probability of reporting interest in science news, it is notable that women had a lower probability than men of being interested in science news across the board. On average, women have a 2% lower probability than men of being interested in science news.</p>
+<img src="sciencenews_files/figure-html/unnamed-chunk-6-1.png" width="672" />
 <table style="text-align:center">
 <caption>
 <strong>Interest in Science News by Religiosity and Gender</strong>
@@ -758,6 +707,8 @@ Akaike Inf. Crit.
 </td>
 </tr>
 </table>
+<p>Women experience the greatest variation in likelihood of reading science news compared to Men. Women who infrequently attend religious services have a 57% probability of reading science news, women who frequently attend religious services have a 58% probability of reading science news, and women who never attend religious services have a 60% probability of reading science news. By contrast, men have an avereage of 61% probability of reading science news across the board.</p>
+<img src="sciencenews_files/figure-html/unnamed-chunk-7-1.png" width="672" />
 <table style="text-align:center">
 <caption>
 <strong>Reading Science News by Religiosity and Gender</strong>
@@ -957,6 +908,11 @@ Akaike Inf. Crit.
 </td>
 </tr>
 </table>
+<p>People who have a bachelor’s degree or higher have the highest probability of being interested in science news at about 70% on average regardless of frequency of religious service attendance.</p>
+<p>People who have some college education have a 67% average probability of being interested in science news if they infrequently attend religious services, and a 68% average probability of being interested in science news if they frequently or never attend religious services.</p>
+<p>People who have a high school education have a 65% average probability of being interested in science news across all frequencies of attending religious services.</p>
+<p>People who have less than a high school education that have never or frequently attend religious services have a 64% average probability of being interested in science news, and people who infrequently attend religious services have a 65% average probability of being interested in science news.</p>
+<img src="sciencenews_files/figure-html/unnamed-chunk-8-1.png" width="672" />
 <table style="text-align:center">
 <caption>
 <strong>Interest in Science News by Religiosity and Education</strong>
@@ -1282,6 +1238,11 @@ Akaike Inf. Crit.
 </td>
 </tr>
 </table>
+<p>People who have a bachelor’s degree or higher have the highest probability of being frequent readers of science news at about 62% if they frequently attend religious services, and 64% if they infrequently or never attend religious services.</p>
+<p>People who have some college education have a 60% average probability of being frequent readers of science news if they frequently or infrequently attend religious services, and a 63% average probability of being frequent readers of science news if they never attend religious services.</p>
+<p>People who have a high school education have a 56% average probability of being frequent readers of science news if they attend religious services frequently, and a 57% average probability of being frequent readers of science news if they attend religious services infrequently or never.</p>
+<p>People who have less than a high school education that infrequently or frequently attend religious services have a 58% average probability of being frequent readers of science news, and a 57% average probability of being frequent readers of science news if they never attend religious services.</p>
+<img src="sciencenews_files/figure-html/unnamed-chunk-9-1.png" width="672" />
 <table style="text-align:center">
 <caption>
 <strong>Reading Science News by Religiosity and Education</strong>
@@ -1607,6 +1568,13 @@ Akaike Inf. Crit.
 </td>
 </tr>
 </table>
+<p>Although the differences are not statistically significant, there are some interesting patterns that emerge when we look at frequency of religious service attendance and interest in science news by ethnicity.</p>
+<p>The least change happens across White people. They are 68% likely to be interested in science news across all frequencies.</p>
+<p>Black people who frequently attend religious services are 66% likely to be interested in science news, Black people who infrequently attend religious services are 68% likely to be interested in science news, and black people who never attend religious services are 65% likely to be interested in science news.</p>
+<p>People who are categorized as other are 67% likely to be interested in science news if they frequently attend religious services, 71% likely to be interested in science news if they infrequently attend religious services, and 66% likely to be interested in science news if they never attend religious services.</p>
+<p>People who are Hispanic are 67% likely to be interested in science news if they frequently attend religious services, 69% likely to be interested in science news if they infrequently attend religious services, and 68% likely to be interested in science news if they never attend religious services.</p>
+<p>For people who are 2+ Races and frequently attend religious services, they are 66% on average likely to be interested in science news, infrequently and never 67% on average likely to be interested in science news</p>
+<img src="sciencenews_files/figure-html/unnamed-chunk-10-1.png" width="672" />
 <table style="text-align:center">
 <caption>
 <strong>Interest in Science News by Religiosity and Ethnicity</strong>
@@ -1995,331 +1963,63 @@ Akaike Inf. Crit.
 </td>
 </tr>
 </table>
-<table style="text-align:center">
-<caption>
-<strong>Interest in Science News by Religiosity and Region</strong>
-</caption>
-<tr>
-<td colspan="2" style="border-bottom: 1px solid black">
-</td>
-</tr>
-<tr>
-<td style="text-align:left">
-</td>
-<td>
-<em>Dependent variable:</em>
-</td>
-</tr>
-<tr>
-<td>
-</td>
-<td colspan="1" style="border-bottom: 1px solid black">
-</td>
-</tr>
-<tr>
-<td style="text-align:left">
-</td>
-<td>
-topicint
-</td>
-</tr>
-<tr>
-<td colspan="2" style="border-bottom: 1px solid black">
-</td>
-</tr>
-<tr>
-<td style="text-align:left">
-rsattInfrequently
-</td>
-<td>
--0.011
-</td>
-</tr>
-<tr>
-<td style="text-align:left">
-</td>
-<td>
-(0.205)
-</td>
-</tr>
-<tr>
-<td style="text-align:left">
-</td>
-<td>
-</td>
-</tr>
-<tr>
-<td style="text-align:left">
-rsattNever
-</td>
-<td>
--0.173
-</td>
-</tr>
-<tr>
-<td style="text-align:left">
-</td>
-<td>
-(0.218)
-</td>
-</tr>
-<tr>
-<td style="text-align:left">
-</td>
-<td>
-</td>
-</tr>
-<tr>
-<td style="text-align:left">
-PPREG4Midwest
-</td>
-<td>
--0.109
-</td>
-</tr>
-<tr>
-<td style="text-align:left">
-</td>
-<td>
-(0.200)
-</td>
-</tr>
-<tr>
-<td style="text-align:left">
-</td>
-<td>
-</td>
-</tr>
-<tr>
-<td style="text-align:left">
-PPREG4South
-</td>
-<td>
--0.187
-</td>
-</tr>
-<tr>
-<td style="text-align:left">
-</td>
-<td>
-(0.180)
-</td>
-</tr>
-<tr>
-<td style="text-align:left">
-</td>
-<td>
-</td>
-</tr>
-<tr>
-<td style="text-align:left">
-PPREG4West
-</td>
-<td>
--0.097
-</td>
-</tr>
-<tr>
-<td style="text-align:left">
-</td>
-<td>
-(0.198)
-</td>
-</tr>
-<tr>
-<td style="text-align:left">
-</td>
-<td>
-</td>
-</tr>
-<tr>
-<td style="text-align:left">
-rsattInfrequently:PPREG4Midwest
-</td>
-<td>
--0.148
-</td>
-</tr>
-<tr>
-<td style="text-align:left">
-</td>
-<td>
-(0.267)
-</td>
-</tr>
-<tr>
-<td style="text-align:left">
-</td>
-<td>
-</td>
-</tr>
-<tr>
-<td style="text-align:left">
-rsattNever:PPREG4Midwest
-</td>
-<td>
--0.146
-</td>
-</tr>
-<tr>
-<td style="text-align:left">
-</td>
-<td>
-(0.291)
-</td>
-</tr>
-<tr>
-<td style="text-align:left">
-</td>
-<td>
-</td>
-</tr>
-<tr>
-<td style="text-align:left">
-rsattInfrequently:PPREG4South
-</td>
-<td>
-0.028
-</td>
-</tr>
-<tr>
-<td style="text-align:left">
-</td>
-<td>
-(0.244)
-</td>
-</tr>
-<tr>
-<td style="text-align:left">
-</td>
-<td>
-</td>
-</tr>
-<tr>
-<td style="text-align:left">
-rsattNever:PPREG4South
-</td>
-<td>
-0.241
-</td>
-</tr>
-<tr>
-<td style="text-align:left">
-</td>
-<td>
-(0.265)
-</td>
-</tr>
-<tr>
-<td style="text-align:left">
-</td>
-<td>
-</td>
-</tr>
-<tr>
-<td style="text-align:left">
-rsattInfrequently:PPREG4West
-</td>
-<td>
-0.689<sup>**</sup>
-</td>
-</tr>
-<tr>
-<td style="text-align:left">
-</td>
-<td>
-(0.290)
-</td>
-</tr>
-<tr>
-<td style="text-align:left">
-</td>
-<td>
-</td>
-</tr>
-<tr>
-<td style="text-align:left">
-rsattNever:PPREG4West
-</td>
-<td>
-0.643<sup>**</sup>
-</td>
-</tr>
-<tr>
-<td style="text-align:left">
-</td>
-<td>
-(0.291)
-</td>
-</tr>
-<tr>
-<td style="text-align:left">
-</td>
-<td>
-</td>
-</tr>
-<tr>
-<td style="text-align:left">
-Constant
-</td>
-<td>
-1.092<sup>***</sup>
-</td>
-</tr>
-<tr>
-<td style="text-align:left">
-</td>
-<td>
-(0.157)
-</td>
-</tr>
-<tr>
-<td style="text-align:left">
-</td>
-<td>
-</td>
-</tr>
-<tr>
-<td colspan="2" style="border-bottom: 1px solid black">
-</td>
-</tr>
-<tr>
-<td style="text-align:left">
-Observations
-</td>
-<td>
-4,001
-</td>
-</tr>
-<tr>
-<td style="text-align:left">
-Log Likelihood
-</td>
-<td>
--2,300.542
-</td>
-</tr>
-<tr>
-<td style="text-align:left">
-Akaike Inf. Crit.
-</td>
-<td>
-4,625.084
-</td>
-</tr>
-<tr>
-<td colspan="2" style="border-bottom: 1px solid black">
-</td>
-</tr>
-<tr>
-<td style="text-align:left">
-<em>Note:</em>
-</td>
-<td style="text-align:right">
-<sup><em></sup>p&lt;0.1; <sup><strong></sup>p&lt;0.05; <sup></strong></em></sup>p&lt;0.01
-</td>
-</tr>
-</table>
+<p>Breaking up the data by region (Northeast, Midwest, South, and West) also yields some interesting results.</p>
+<p>People in the West who infrequently and never attend religous services have the highest probability of being interested in science news. People in the West who infrequently and never attend religious services have a 71% or 70% probability on average of being interested in science news.</p>
+<p>People in the South do not experience much change in probability of being interested in science news whether they frequently, infrequently, or never attend religious services. They all have a 68% probability on average of being interested in science news.</p>
+<p>People in the Midwest who frequently and infrequently attend religious services have a 67% probability on average of being interested in science news. Interestingly, people in the Midwest who never attend religious services have a 66% probability on average of being interested in science news.</p>
+<p>There is a similar trend in the Northeast, where people who frequently and infrequently attend religious services have a 68% probability on average of being interested in science news. Peole in the Northeast who never attend religious services have a 67% probability on average of being interested in science news.</p>
+<p><img src="sciencenews_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
+<pre><code>## 
+## &lt;table style=&quot;text-align:center&quot;&gt;&lt;caption&gt;&lt;strong&gt;Interest in Science News by Religiosity and Region&lt;/strong&gt;&lt;/caption&gt;
+## &lt;tr&gt;&lt;td colspan=&quot;2&quot; style=&quot;border-bottom: 1px solid black&quot;&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;text-align:left&quot;&gt;&lt;/td&gt;&lt;td&gt;&lt;em&gt;Dependent variable:&lt;/em&gt;&lt;/td&gt;&lt;/tr&gt;
+## &lt;tr&gt;&lt;td&gt;&lt;/td&gt;&lt;td colspan=&quot;1&quot; style=&quot;border-bottom: 1px solid black&quot;&gt;&lt;/td&gt;&lt;/tr&gt;
+## &lt;tr&gt;&lt;td style=&quot;text-align:left&quot;&gt;&lt;/td&gt;&lt;td&gt;topicint&lt;/td&gt;&lt;/tr&gt;
+## &lt;tr&gt;&lt;td colspan=&quot;2&quot; style=&quot;border-bottom: 1px solid black&quot;&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;text-align:left&quot;&gt;rsattInfrequently&lt;/td&gt;&lt;td&gt;-0.011&lt;/td&gt;&lt;/tr&gt;
+## &lt;tr&gt;&lt;td style=&quot;text-align:left&quot;&gt;&lt;/td&gt;&lt;td&gt;(0.205)&lt;/td&gt;&lt;/tr&gt;
+## &lt;tr&gt;&lt;td style=&quot;text-align:left&quot;&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;
+## &lt;tr&gt;&lt;td style=&quot;text-align:left&quot;&gt;rsattNever&lt;/td&gt;&lt;td&gt;-0.173&lt;/td&gt;&lt;/tr&gt;
+## &lt;tr&gt;&lt;td style=&quot;text-align:left&quot;&gt;&lt;/td&gt;&lt;td&gt;(0.218)&lt;/td&gt;&lt;/tr&gt;
+## &lt;tr&gt;&lt;td style=&quot;text-align:left&quot;&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;
+## &lt;tr&gt;&lt;td style=&quot;text-align:left&quot;&gt;PPREG4Midwest&lt;/td&gt;&lt;td&gt;-0.109&lt;/td&gt;&lt;/tr&gt;
+## &lt;tr&gt;&lt;td style=&quot;text-align:left&quot;&gt;&lt;/td&gt;&lt;td&gt;(0.200)&lt;/td&gt;&lt;/tr&gt;
+## &lt;tr&gt;&lt;td style=&quot;text-align:left&quot;&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;
+## &lt;tr&gt;&lt;td style=&quot;text-align:left&quot;&gt;PPREG4South&lt;/td&gt;&lt;td&gt;-0.187&lt;/td&gt;&lt;/tr&gt;
+## &lt;tr&gt;&lt;td style=&quot;text-align:left&quot;&gt;&lt;/td&gt;&lt;td&gt;(0.180)&lt;/td&gt;&lt;/tr&gt;
+## &lt;tr&gt;&lt;td style=&quot;text-align:left&quot;&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;
+## &lt;tr&gt;&lt;td style=&quot;text-align:left&quot;&gt;PPREG4West&lt;/td&gt;&lt;td&gt;-0.097&lt;/td&gt;&lt;/tr&gt;
+## &lt;tr&gt;&lt;td style=&quot;text-align:left&quot;&gt;&lt;/td&gt;&lt;td&gt;(0.198)&lt;/td&gt;&lt;/tr&gt;
+## &lt;tr&gt;&lt;td style=&quot;text-align:left&quot;&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;
+## &lt;tr&gt;&lt;td style=&quot;text-align:left&quot;&gt;rsattInfrequently:PPREG4Midwest&lt;/td&gt;&lt;td&gt;-0.148&lt;/td&gt;&lt;/tr&gt;
+## &lt;tr&gt;&lt;td style=&quot;text-align:left&quot;&gt;&lt;/td&gt;&lt;td&gt;(0.267)&lt;/td&gt;&lt;/tr&gt;
+## &lt;tr&gt;&lt;td style=&quot;text-align:left&quot;&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;
+## &lt;tr&gt;&lt;td style=&quot;text-align:left&quot;&gt;rsattNever:PPREG4Midwest&lt;/td&gt;&lt;td&gt;-0.146&lt;/td&gt;&lt;/tr&gt;
+## &lt;tr&gt;&lt;td style=&quot;text-align:left&quot;&gt;&lt;/td&gt;&lt;td&gt;(0.291)&lt;/td&gt;&lt;/tr&gt;
+## &lt;tr&gt;&lt;td style=&quot;text-align:left&quot;&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;
+## &lt;tr&gt;&lt;td style=&quot;text-align:left&quot;&gt;rsattInfrequently:PPREG4South&lt;/td&gt;&lt;td&gt;0.028&lt;/td&gt;&lt;/tr&gt;
+## &lt;tr&gt;&lt;td style=&quot;text-align:left&quot;&gt;&lt;/td&gt;&lt;td&gt;(0.244)&lt;/td&gt;&lt;/tr&gt;
+## &lt;tr&gt;&lt;td style=&quot;text-align:left&quot;&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;
+## &lt;tr&gt;&lt;td style=&quot;text-align:left&quot;&gt;rsattNever:PPREG4South&lt;/td&gt;&lt;td&gt;0.241&lt;/td&gt;&lt;/tr&gt;
+## &lt;tr&gt;&lt;td style=&quot;text-align:left&quot;&gt;&lt;/td&gt;&lt;td&gt;(0.265)&lt;/td&gt;&lt;/tr&gt;
+## &lt;tr&gt;&lt;td style=&quot;text-align:left&quot;&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;
+## &lt;tr&gt;&lt;td style=&quot;text-align:left&quot;&gt;rsattInfrequently:PPREG4West&lt;/td&gt;&lt;td&gt;0.689&lt;sup&gt;**&lt;/sup&gt;&lt;/td&gt;&lt;/tr&gt;
+## &lt;tr&gt;&lt;td style=&quot;text-align:left&quot;&gt;&lt;/td&gt;&lt;td&gt;(0.290)&lt;/td&gt;&lt;/tr&gt;
+## &lt;tr&gt;&lt;td style=&quot;text-align:left&quot;&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;
+## &lt;tr&gt;&lt;td style=&quot;text-align:left&quot;&gt;rsattNever:PPREG4West&lt;/td&gt;&lt;td&gt;0.643&lt;sup&gt;**&lt;/sup&gt;&lt;/td&gt;&lt;/tr&gt;
+## &lt;tr&gt;&lt;td style=&quot;text-align:left&quot;&gt;&lt;/td&gt;&lt;td&gt;(0.291)&lt;/td&gt;&lt;/tr&gt;
+## &lt;tr&gt;&lt;td style=&quot;text-align:left&quot;&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;
+## &lt;tr&gt;&lt;td style=&quot;text-align:left&quot;&gt;Constant&lt;/td&gt;&lt;td&gt;1.092&lt;sup&gt;***&lt;/sup&gt;&lt;/td&gt;&lt;/tr&gt;
+## &lt;tr&gt;&lt;td style=&quot;text-align:left&quot;&gt;&lt;/td&gt;&lt;td&gt;(0.157)&lt;/td&gt;&lt;/tr&gt;
+## &lt;tr&gt;&lt;td style=&quot;text-align:left&quot;&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;
+## &lt;tr&gt;&lt;td colspan=&quot;2&quot; style=&quot;border-bottom: 1px solid black&quot;&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;text-align:left&quot;&gt;Observations&lt;/td&gt;&lt;td&gt;4,001&lt;/td&gt;&lt;/tr&gt;
+## &lt;tr&gt;&lt;td style=&quot;text-align:left&quot;&gt;Log Likelihood&lt;/td&gt;&lt;td&gt;-2,300.542&lt;/td&gt;&lt;/tr&gt;
+## &lt;tr&gt;&lt;td style=&quot;text-align:left&quot;&gt;Akaike Inf. Crit.&lt;/td&gt;&lt;td&gt;4,625.084&lt;/td&gt;&lt;/tr&gt;
+## &lt;tr&gt;&lt;td colspan=&quot;2&quot; style=&quot;border-bottom: 1px solid black&quot;&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;text-align:left&quot;&gt;&lt;em&gt;Note:&lt;/em&gt;&lt;/td&gt;&lt;td style=&quot;text-align:right&quot;&gt;&lt;sup&gt;*&lt;/sup&gt;p&lt;0.1; &lt;sup&gt;**&lt;/sup&gt;p&lt;0.05; &lt;sup&gt;***&lt;/sup&gt;p&lt;0.01&lt;/td&gt;&lt;/tr&gt;
+## &lt;/table&gt;</code></pre>
+</div>
+<div id="hyopthesis-2-interest-in-science-news-by-party-affiliation" class="section level2">
+<h2>HYOPTHESIS 2: Interest in Science News by Party Affiliation</h2>
+<p>Democrats and Independents had an average of 68% probability of being interested in science news. Republicans had an average of 66% probability of being interested in science news. People who indicated their party affiliation as ‘Something Else’ had an avereage of 67% probability of being interested in science news.</p>
+<img src="sciencenews_files/figure-html/unnamed-chunk-12-1.png" width="672" />
 <table style="text-align:center">
 <caption>
 <strong>Interest in Science News by Party Affiliation</strong>
@@ -2498,184 +2198,14 @@ Akaike Inf. Crit.
 </td>
 </tr>
 </table>
-<table style="text-align:center">
-<caption>
-<strong>Frequency of Reading Science News by Party Affiliation</strong>
-</caption>
-<tr>
-<td colspan="2" style="border-bottom: 1px solid black">
-</td>
-</tr>
-<tr>
-<td style="text-align:left">
-</td>
-<td>
-<em>Dependent variable:</em>
-</td>
-</tr>
-<tr>
-<td>
-</td>
-<td colspan="1" style="border-bottom: 1px solid black">
-</td>
-</tr>
-<tr>
-<td style="text-align:left">
-</td>
-<td>
-readsci
-</td>
-</tr>
-<tr>
-<td colspan="2" style="border-bottom: 1px solid black">
-</td>
-</tr>
-<tr>
-<td style="text-align:left">
-PARTYRepublican
-</td>
-<td>
-0.144
-</td>
-</tr>
-<tr>
-<td style="text-align:left">
-</td>
-<td>
-(0.261)
-</td>
-</tr>
-<tr>
-<td style="text-align:left">
-</td>
-<td>
-</td>
-</tr>
-<tr>
-<td style="text-align:left">
-PARTYDemocrat
-</td>
-<td>
-0.481<sup>*</sup>
-</td>
-</tr>
-<tr>
-<td style="text-align:left">
-</td>
-<td>
-(0.260)
-</td>
-</tr>
-<tr>
-<td style="text-align:left">
-</td>
-<td>
-</td>
-</tr>
-<tr>
-<td style="text-align:left">
-PARTYIndependent
-</td>
-<td>
-0.509<sup>*</sup>
-</td>
-</tr>
-<tr>
-<td style="text-align:left">
-</td>
-<td>
-(0.260)
-</td>
-</tr>
-<tr>
-<td style="text-align:left">
-</td>
-<td>
-</td>
-</tr>
-<tr>
-<td style="text-align:left">
-PARTYSomething else, please specify
-</td>
-<td>
-0.332
-</td>
-</tr>
-<tr>
-<td style="text-align:left">
-</td>
-<td>
-(0.290)
-</td>
-</tr>
-<tr>
-<td style="text-align:left">
-</td>
-<td>
-</td>
-</tr>
-<tr>
-<td style="text-align:left">
-Constant
-</td>
-<td>
--0.879<sup>***</sup>
-</td>
-</tr>
-<tr>
-<td style="text-align:left">
-</td>
-<td>
-(0.254)
-</td>
-</tr>
-<tr>
-<td style="text-align:left">
-</td>
-<td>
-</td>
-</tr>
-<tr>
-<td colspan="2" style="border-bottom: 1px solid black">
-</td>
-</tr>
-<tr>
-<td style="text-align:left">
-Observations
-</td>
-<td>
-4,017
-</td>
-</tr>
-<tr>
-<td style="text-align:left">
-Log Likelihood
-</td>
-<td>
--2,649.875
-</td>
-</tr>
-<tr>
-<td style="text-align:left">
-Akaike Inf. Crit.
-</td>
-<td>
-5,309.750
-</td>
-</tr>
-<tr>
-<td colspan="2" style="border-bottom: 1px solid black">
-</td>
-</tr>
-<tr>
-<td style="text-align:left">
-<em>Note:</em>
-</td>
-<td style="text-align:right">
-<sup><em></sup>p&lt;0.1; <sup><strong></sup>p&lt;0.05; <sup></strong></em></sup>p&lt;0.01
-</td>
-</tr>
-</table>
+<p>Democrats and Independents had an average of 60% probability of being frequent readers of science news. Republicans had an average of 58% probability of being frequent readers of science news. People who indicated their party affiliation as ‘Something Else’ had an avereage 67% probability of being frequent readers of science news.</p>
+<p><img src="sciencenews_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
+</div>
+<div id="hypothesis-3-social-media-science-news-engagement-differences" class="section level2">
+<h2>HYPOTHESIS 3: Social Media Science News Engagement Differences</h2>
+<p>The social media engagement score variable (SMScore) encompasses responses about frequency of social media use, the types of science accounts a person follows, and their engagement with social media science news posts into a numeric score ranging from 0 to 17. 0 is the least engaged with science news via social media, while 17 is the most engaged with science news via social media.</p>
+<p>There are no significant differences in SMScore by region. On average, the Northeast has a score of 10.63, the Midwest has a score of 10.83, the South has a score of 10.91, and the West has a score of 10.99.</p>
+<img src="sciencenews_files/figure-html/unnamed-chunk-14-1.png" width="672" />
 <table style="text-align:center">
 <caption>
 <strong>Social Media Science News Engagement by Region</strong>
@@ -2849,137 +2379,28 @@ F Statistic
 </td>
 </tr>
 </table>
-<table style="text-align:center">
-<caption>
-<strong>Social Media Science News Engagement by Gender</strong>
-</caption>
-<tr>
-<td colspan="2" style="border-bottom: 1px solid black">
-</td>
-</tr>
-<tr>
-<td style="text-align:left">
-</td>
-<td>
-<em>Dependent variable:</em>
-</td>
-</tr>
-<tr>
-<td>
-</td>
-<td colspan="1" style="border-bottom: 1px solid black">
-</td>
-</tr>
-<tr>
-<td style="text-align:left">
-</td>
-<td>
-SMScore
-</td>
-</tr>
-<tr>
-<td colspan="2" style="border-bottom: 1px solid black">
-</td>
-</tr>
-<tr>
-<td style="text-align:left">
-PPGENDERFemale
-</td>
-<td>
--0.094
-</td>
-</tr>
-<tr>
-<td style="text-align:left">
-</td>
-<td>
-(0.119)
-</td>
-</tr>
-<tr>
-<td style="text-align:left">
-</td>
-<td>
-</td>
-</tr>
-<tr>
-<td style="text-align:left">
-Constant
-</td>
-<td>
-10.912<sup>***</sup>
-</td>
-</tr>
-<tr>
-<td style="text-align:left">
-</td>
-<td>
-(0.089)
-</td>
-</tr>
-<tr>
-<td style="text-align:left">
-</td>
-<td>
-</td>
-</tr>
-<tr>
-<td colspan="2" style="border-bottom: 1px solid black">
-</td>
-</tr>
-<tr>
-<td style="text-align:left">
-Observations
-</td>
-<td>
-2,755
-</td>
-</tr>
-<tr>
-<td style="text-align:left">
-R<sup>2</sup>
-</td>
-<td>
-0.0002
-</td>
-</tr>
-<tr>
-<td style="text-align:left">
-Adjusted R<sup>2</sup>
-</td>
-<td>
--0.0001
-</td>
-</tr>
-<tr>
-<td style="text-align:left">
-Residual Std. Error
-</td>
-<td>
-3.089 (df = 2753)
-</td>
-</tr>
-<tr>
-<td style="text-align:left">
-F Statistic
-</td>
-<td>
-0.623 (df = 1; 2753)
-</td>
-</tr>
-<tr>
-<td colspan="2" style="border-bottom: 1px solid black">
-</td>
-</tr>
-<tr>
-<td style="text-align:left">
-<em>Note:</em>
-</td>
-<td style="text-align:right">
-<sup><em></sup>p&lt;0.1; <sup><strong></sup>p&lt;0.05; <sup></strong></em></sup>p&lt;0.01
-</td>
-</tr>
-</table>
+<p>There are no significant differences in SMScore by gender. Men have an average score of 10.91, and women have an average score of 10.82.</p>
+<p><img src="sciencenews_files/figure-html/unnamed-chunk-15-1.png" width="672" /></p>
+<pre><code>## 
+## &lt;table style=&quot;text-align:center&quot;&gt;&lt;caption&gt;&lt;strong&gt;Social Media Science News Engagement by Gender&lt;/strong&gt;&lt;/caption&gt;
+## &lt;tr&gt;&lt;td colspan=&quot;2&quot; style=&quot;border-bottom: 1px solid black&quot;&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;text-align:left&quot;&gt;&lt;/td&gt;&lt;td&gt;&lt;em&gt;Dependent variable:&lt;/em&gt;&lt;/td&gt;&lt;/tr&gt;
+## &lt;tr&gt;&lt;td&gt;&lt;/td&gt;&lt;td colspan=&quot;1&quot; style=&quot;border-bottom: 1px solid black&quot;&gt;&lt;/td&gt;&lt;/tr&gt;
+## &lt;tr&gt;&lt;td style=&quot;text-align:left&quot;&gt;&lt;/td&gt;&lt;td&gt;SMScore&lt;/td&gt;&lt;/tr&gt;
+## &lt;tr&gt;&lt;td colspan=&quot;2&quot; style=&quot;border-bottom: 1px solid black&quot;&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;text-align:left&quot;&gt;PPGENDERFemale&lt;/td&gt;&lt;td&gt;-0.094&lt;/td&gt;&lt;/tr&gt;
+## &lt;tr&gt;&lt;td style=&quot;text-align:left&quot;&gt;&lt;/td&gt;&lt;td&gt;(0.119)&lt;/td&gt;&lt;/tr&gt;
+## &lt;tr&gt;&lt;td style=&quot;text-align:left&quot;&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;
+## &lt;tr&gt;&lt;td style=&quot;text-align:left&quot;&gt;Constant&lt;/td&gt;&lt;td&gt;10.912&lt;sup&gt;***&lt;/sup&gt;&lt;/td&gt;&lt;/tr&gt;
+## &lt;tr&gt;&lt;td style=&quot;text-align:left&quot;&gt;&lt;/td&gt;&lt;td&gt;(0.089)&lt;/td&gt;&lt;/tr&gt;
+## &lt;tr&gt;&lt;td style=&quot;text-align:left&quot;&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;
+## &lt;tr&gt;&lt;td colspan=&quot;2&quot; style=&quot;border-bottom: 1px solid black&quot;&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;text-align:left&quot;&gt;Observations&lt;/td&gt;&lt;td&gt;2,755&lt;/td&gt;&lt;/tr&gt;
+## &lt;tr&gt;&lt;td style=&quot;text-align:left&quot;&gt;R&lt;sup&gt;2&lt;/sup&gt;&lt;/td&gt;&lt;td&gt;0.0002&lt;/td&gt;&lt;/tr&gt;
+## &lt;tr&gt;&lt;td style=&quot;text-align:left&quot;&gt;Adjusted R&lt;sup&gt;2&lt;/sup&gt;&lt;/td&gt;&lt;td&gt;-0.0001&lt;/td&gt;&lt;/tr&gt;
+## &lt;tr&gt;&lt;td style=&quot;text-align:left&quot;&gt;Residual Std. Error&lt;/td&gt;&lt;td&gt;3.089 (df = 2753)&lt;/td&gt;&lt;/tr&gt;
+## &lt;tr&gt;&lt;td style=&quot;text-align:left&quot;&gt;F Statistic&lt;/td&gt;&lt;td&gt;0.623 (df = 1; 2753)&lt;/td&gt;&lt;/tr&gt;
+## &lt;tr&gt;&lt;td colspan=&quot;2&quot; style=&quot;border-bottom: 1px solid black&quot;&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;text-align:left&quot;&gt;&lt;em&gt;Note:&lt;/em&gt;&lt;/td&gt;&lt;td style=&quot;text-align:right&quot;&gt;&lt;sup&gt;*&lt;/sup&gt;p&lt;0.1; &lt;sup&gt;**&lt;/sup&gt;p&lt;0.05; &lt;sup&gt;***&lt;/sup&gt;p&lt;0.01&lt;/td&gt;&lt;/tr&gt;
+## &lt;/table&gt;</code></pre>
+<p>There are no significant differences in the average social media science news engaegment score among people with different frequencies of religious service attendance. People who frequently attend religious services have an average score of 10.76. People who infrequently attend religious services have an average score of 10.82. People who never attend religious services have an average score of 11.03.</p>
+<img src="sciencenews_files/figure-html/unnamed-chunk-16-1.png" width="672" />
 <table style="text-align:center">
 <caption>
 <strong>Social Media Science News Engagement by Religiosity</strong>
@@ -3132,6 +2553,8 @@ F Statistic
 </td>
 </tr>
 </table>
+<p>There are significant differences in the average social media science news engagement score among political party affiliations. Republicans have the lowest average score at 10.59. Democrats have the highest average score of 11.05. Independents have a score of 10.94.</p>
+<img src="sciencenews_files/figure-html/unnamed-chunk-17-1.png" width="672" />
 <table style="text-align:center">
 <caption>
 <strong>Social Media Science News Engagement by Party Affiliation</strong>
@@ -3305,6 +2728,8 @@ F Statistic
 </td>
 </tr>
 </table>
+<p>People with a bachelor’s degree or higher and people with some college education have a significant difference in the social media science news engagement score, people who have a high school degree or less are less certain. On average, people with less than a high school degree have a score of 10.50. People with a high school degree have an average score of 10.38. People with some college have an average score of 10.92, and people with a bachelor’s degree or higher have an average score of 11.5.</p>
+<img src="sciencenews_files/figure-html/unnamed-chunk-18-1.png" width="672" />
 <table style="text-align:center">
 <caption>
 <strong>Social Media Science News Engagement by Education</strong>
@@ -3478,6 +2903,8 @@ F Statistic
 </td>
 </tr>
 </table>
+<p>Younger age groups (including 18-24, 25 - 34, and 35 - 44) tend to engage more with science news on social media than older age groups. On average, 18-24 year olds have a SMSscore of 11.03. 25-34 year olds have a score of 11.50, and 35 - 44 year olds have a score of 11.22. People age 45 - 54 have a score of 10.70, age 65 - 74 have a score of 10.46.</p>
+<img src="sciencenews_files/figure-html/unnamed-chunk-19-1.png" width="672" />
 <table style="text-align:center">
 <caption>
 <strong>Social Media Science News Engagement by Age Category</strong>
@@ -3714,6 +3141,13 @@ F Statistic
 </td>
 </tr>
 </table>
+<div id="conclusions" class="section level3">
+<h3>CONCLUSIONS</h3>
+<p>Hypothesis 1 which stated that: “As frequency of religious service attendance increases, interest in science news decreases and frequency of reading science news decreases” was not upheld. Religious service attendance alone did not do a good job of predicting interest in science news or reading science news. When interacting religious service attendance with other variables such as Gender or Education, we see a more nuanced picture of how religiosity could be interacting with other variables and thus affecting science news consumption, but over all religiosity does not seem to have an effect on interest and reading science news.</p>
+<p>Hypothesis 2 which stated that: “There are differences across political party affiliation in terms of interest in science news and frequency of reading science news” was upheld, we see that Democrats and Independents and people who identify as Something Else have a higher probability of both being interested in science news and reading science news. The results of the logistic regression were significant in this case.</p>
+<p>Hypothesis 3 which stated that: “There are differences among different groups of people who engage with science news on social media” was upheld, especially with regard to Age groups (Young vs. Old), Party Affiliation, and Education Level. Given these results, it is still unclear what the implications of science news engagement via social media are. It depends on the user’s discretion of what is reliable vs unreliable information, and what content platforms choose to prioritize, as well as the quality of the science journalism that is available and widely circulated on social media platforms. Further research would need to be conducted to understand the behaviors of different groups when engaging with science news on social media.</p>
+<p>There are limitations to these conclusions, which include the fact that religious service attendance does not necessarily indicate religiosity, as different religions also have different ways of expressing religiosity that do not necessarily entail going to a religious service. However, it is a good indicator for common monotheistic religions pracrticed in the United States. There is also the issue of social desirability bias in self reported survey questions, especially with regard to frequency and interest in science news. I attempted to mitigate that by using both measures of interest as well as actual frequency of reading science news.</p>
+<p>Click here to see the code: <a href="https://github.com/lama-ahmad/DataAnalysis-R/blob/master/sciencenews.Rmd" class="uri">https://github.com/lama-ahmad/DataAnalysis-R/blob/master/sciencenews.Rmd</a></p>
 </div>
 </div>
 

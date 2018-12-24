@@ -1,39 +1,1205 @@
 <!DOCTYPE html>
-<html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+
+<meta name="author" content="Lama Ahmad" />
+
+
+<title>Arsenic in Wells</title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+
+</head>
+
 <body>
 
-<table style="text-align:center"><caption><strong>Social Media Science News Engagement by Age Category</strong></caption>
-<tr><td colspan="2" style="border-bottom: 1px solid black"></td></tr><tr><td style="text-align:left"></td><td><em>Dependent variable:</em></td></tr>
-<tr><td></td><td colspan="1" style="border-bottom: 1px solid black"></td></tr>
-<tr><td style="text-align:left"></td><td>SMScore</td></tr>
-<tr><td colspan="2" style="border-bottom: 1px solid black"></td></tr><tr><td style="text-align:left">ppagecat25-34</td><td>0.468<sup>*</sup></td></tr>
-<tr><td style="text-align:left"></td><td>(0.254)</td></tr>
-<tr><td style="text-align:left"></td><td></td></tr>
-<tr><td style="text-align:left">ppagecat35-44</td><td>0.193</td></tr>
-<tr><td style="text-align:left"></td><td>(0.258)</td></tr>
-<tr><td style="text-align:left"></td><td></td></tr>
-<tr><td style="text-align:left">ppagecat45-54</td><td>-0.339</td></tr>
-<tr><td style="text-align:left"></td><td>(0.255)</td></tr>
-<tr><td style="text-align:left"></td><td></td></tr>
-<tr><td style="text-align:left">ppagecat55-64</td><td>-0.461<sup>*</sup></td></tr>
-<tr><td style="text-align:left"></td><td>(0.249)</td></tr>
-<tr><td style="text-align:left"></td><td></td></tr>
-<tr><td style="text-align:left">ppagecat65-74</td><td>-0.543<sup>**</sup></td></tr>
-<tr><td style="text-align:left"></td><td>(0.268)</td></tr>
-<tr><td style="text-align:left"></td><td></td></tr>
-<tr><td style="text-align:left">ppagecat75+</td><td>-1.652<sup>***</sup></td></tr>
-<tr><td style="text-align:left"></td><td>(0.361)</td></tr>
-<tr><td style="text-align:left"></td><td></td></tr>
-<tr><td style="text-align:left">Constant</td><td>11.040<sup>***</sup></td></tr>
-<tr><td style="text-align:left"></td><td>(0.215)</td></tr>
-<tr><td style="text-align:left"></td><td></td></tr>
-<tr><td colspan="2" style="border-bottom: 1px solid black"></td></tr><tr><td style="text-align:left">Observations</td><td>2,755</td></tr>
-<tr><td style="text-align:left">R<sup>2</sup></td><td>0.024</td></tr>
-<tr><td style="text-align:left">Adjusted R<sup>2</sup></td><td>0.022</td></tr>
-<tr><td style="text-align:left">Residual Std. Error</td><td>3.055 (df = 2748)</td></tr>
-<tr><td style="text-align:left">F Statistic</td><td>11.369<sup>***</sup> (df = 6; 2748)</td></tr>
-<tr><td colspan="2" style="border-bottom: 1px solid black"></td></tr><tr><td style="text-align:left"><em>Note:</em></td><td style="text-align:right"><sup>*</sup>p<0.1; <sup>**</sup>p<0.05; <sup>***</sup>p<0.01</td></tr>
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 51px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+
+.section h2 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h3 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h4 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h5 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h6 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+
+<div class="container-fluid main-container">
+
+<!-- tabsets -->
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+</script>
+
+<!-- code folding -->
+
+
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Data Analysis in R</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Home</a>
+</li>
+<li>
+  <a href="sciencenews.html">Science News</a>
+</li>
+<li>
+  <a href="arsenicinwells.html">Arsenic in Wells</a>
+</li>
+<li>
+  <a href="financialwellbeing.html">Financial Well Being</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">Arsenic in Wells</h1>
+<h4 class="author"><em>Lama Ahmad</em></h4>
+<h4 class="date"><em>12/5/2018</em></h4>
+
+</div>
+
+
+<div id="part-1" class="section level3">
+<h3>PART 1</h3>
+<p>The presence of arsenic in a well does lead to an increase in percentage of household income spent on healthcare. When there is no arsenic in the well, the percentage of household income spent on healthcare is on average .07%. When there is arsenic in the well, the percentage of household income spent on healthcare is on average .11%.</p>
+<p>When analyzing this effect by region, it is found that for Region 1 there is an average of 0.06% increase in percentage of household income spent on healthcare when arsenic is present. For Region 2, there is an average of 0.02% increase in percentage of household income spent on healthcare when arsenic is present. For Region 3, there is an average of .05% increase in percentage of household income spent on healthcare when arsenic is precent.</p>
+<p>Therefore, the regional findings suggest that in term of impoverishment increased through increased spending on healthcare caused by arsenic found in wells, Region 1 has the largest difference when comparing percentage of household income spent on healthcare when there is arsenic present in the well.</p>
+<p><img src="arsenicinwells_files/figure-html/unnamed-chunk-2-1.png" width="672" /><img src="arsenicinwells_files/figure-html/unnamed-chunk-2-2.png" width="672" /></p>
+</div>
+<div id="part-2" class="section level3">
+<h3>PART 2</h3>
+</div>
+<div id="relationship-to-owner-predict-switch" class="section level2">
+<h2>RELATIONSHIP TO OWNER PREDICT SWITCH</h2>
+<p>Individuals were surveyed about their relationship with the well owner, with the assumption that information about the well could be spread differently depending on how close of a tie that the individual had with the well owner. People who reported that the well owner was close family on average had a 70% likelihood of switching wells. People who reported that the well owner was a neighbor on average had a 50% likelihood of switching wells. Lastly, though not significant and therefore uncertain due to a wide confidence interval, people who reported that the well owner was in the same bari had on average a 70% likelihood of switching wells.</p>
+<p><img src="arsenicinwells_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+</div>
+<div id="reported-status-of-well-predicted-switch" class="section level2">
+<h2>REPORTED STATUS OF WELL PREDICTED SWITCH</h2>
+<p>If people know that they the status of the well is unsafe, on average, they have an 86% proability of switching. If people don’t know the status of the well, they also have an 86% percent chance of switching on average. However, the people who don’t know the status of the well also have the most uncertain outcomes. The confidence interval ranges from a 68% cchance of swtiching to a 95% chance of switching, and the results are not significant. This indicates that people who don’t know the status of a well are a vulnerable group to the negative effects of wells that are contaminated by arsenic.</p>
+<p><img src="arsenicinwells_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+</div>
+<div id="how-know-status-of-well-predict-switch" class="section level2">
+<h2>HOW KNOW STATUS OF WELL PREDICT SWITCH</h2>
+<p>(Dropped responses that were not coded in codebook, 1, 2, and 3 included only)</p>
+<p>Individuals found out about the status of the well in various ways. When surveyed about how they found out about the status of the well, people who reported that they knew about the status of the well through a CU Result were on average 86% likely to switch. People who said they found out about the status of the well through the paint were on average 58% likely to switch. People who found out about the status of the well through other means were on average 60% likely to switch, but the results of people who found out about the status of the well through other means are not significant and therefore uncertain. These results indicate that a CU Card is again quite an important determinanat for well switching in households with arsenic in their wells.</p>
+<p><img src="arsenicinwells_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+</div>
+<div id="having-a-cu-medical-card-predict-switch" class="section level2">
+<h2>HAVING A CU MEDICAL CARD PREDICT SWITCH</h2>
+<p>People who have a CU Medical card are most likely to switch wells when a well is found to be contaminated with arsenic. On average, people who have a CU Medical card are 72% likely to switch. People who do not have a CU Medical card are only about 51% likely to switch. However, this result is not significant because it is more uncertain, the confidence interval of switching ranges from 40% to 61%.</p>
+<p><img src="arsenicinwells_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
+</div>
+<div id="probability-of-switch-based-on-oldstat" class="section level2">
+<h2>PROBABILITY OF SWITCH BASED ON OLDSTAT</h2>
+<p>The probability of switching based on status which was visible on the well was the highest when there was a CU plate present, with an average of 95% switching based on wells that had a CU plate present. Comparatively, red paint (which is inferred to indicate a well that is not safe), only had an average of 80% switching and was not a significant result.</p>
+<p><img src="arsenicinwells_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
+</div>
+<div id="probability-of-switch-based-on-newstat" class="section level2">
+<h2>PROBABILITY OF SWITCH BASED ON NEWSTAT</h2>
+<p>Meanwhile, the new plate indicators on the well seemed to successfully predict switching behavior. When the plate indicated that the well was unsafe, there was an 85% probability of switching on average. When the plate indicated that the well was safe, there was only a 17% probability of switching.</p>
+<p><img src="arsenicinwells_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
+</div>
+<div id="recommendations" class="section level2">
+<h2>RECOMMENDATIONS</h2>
+<p>One of the ways to increase switching behavior is also creating a clear and widely understood method for determining which wells are safe to use and which are not. From the codebook and the results of the analyses on switching behavior and indicators of status of the well (Newstat and Oldstat), it seems that there are certain indicators that allow for a greater probability of switching than others.</p>
+<p>A clear indicator of switching behavior is also strongly linked to how information is spread, and what information people have. People who did not know the status of the well had a lot of uncertainty about whether they would switch or not compared to people who did know that the well was unsafe. Combined with a more clear and systemitized way of indicating which wells are safe and which are not safe, a way of educating key people in the village about the safety of wells is crucial for increasing switching behavior.</p>
+<p>By key people, I mean well owners and leaders in villages. Households tended to switch more often if they found out about the status of the well through close family or the same bari. If well owners were more educated on how to disemminate that information, it would spread not just to their family and friends, but also to others who used their well. They could also be educated on best practices for testing, and then placing clear markers on the well to help people know that the well was unsafe.</p>
+<p>Finally, in my analyses I find that having a CU Medical Card greatly increases switching behavior. If possible, NGO and policy makers should focus on creating accessible medical services that can be coupled with education initiatives to ensure that people have access to clean and healthy water and are making informed decisions about the wells they get water to drink and cook with.</p>
+</div>
+<div id="appendices" class="section level2">
+<h2>APPENDICES</h2>
+<p>Click here to see code: <a href="https://github.com/lama-ahmad/DataAnalysis-R/blob/master/arsenicinwells.Rmd" class="uri">https://github.com/lama-ahmad/DataAnalysis-R/blob/master/arsenicinwells.Rmd</a></p>
+</div>
+<div id="problem-1" class="section level1">
+<h1>Problem 1</h1>
+<pre class="r"><code>summary(lm(pct_hhinc_healthcare ~ anyArs, data=wells))</code></pre>
+<pre><code>## 
+## Call:
+## lm(formula = pct_hhinc_healthcare ~ anyArs, data = wells)
+## 
+## Residuals:
+##       Min        1Q    Median        3Q       Max 
+## -0.109969 -0.009472  0.000189  0.009680  0.131871 
+## 
+## Coefficients:
+##              Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept) 7.380e-02  6.643e-05 1110.91   &lt;2e-16 ***
+## anyArsTRUE  3.898e-02  7.283e-04   53.53   &lt;2e-16 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 0.01469 on 49272 degrees of freedom
+## Multiple R-squared:  0.05496,    Adjusted R-squared:  0.05494 
+## F-statistic:  2865 on 1 and 49272 DF,  p-value: &lt; 2.2e-16</code></pre>
+<pre class="r"><code>summary(lm(pct_hhinc_healthcare ~ anyArs * Region, data=wells))</code></pre>
+<pre><code>## 
+## Call:
+## lm(formula = pct_hhinc_healthcare ~ anyArs * Region, data = wells)
+## 
+## Residuals:
+##       Min        1Q    Median        3Q       Max 
+## -0.071731 -0.009175 -0.000146  0.009192  0.105814 
+## 
+## Coefficients:
+##                             Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)                0.0767417  0.0001005 763.584   &lt;2e-16 ***
+## anyArsTRUE                 0.0621012  0.0010867  57.148   &lt;2e-16 ***
+## RegionRegion 2            -0.0014337  0.0001517  -9.453   &lt;2e-16 ***
+## RegionRegion 3            -0.0086093  0.0001549 -55.566   &lt;2e-16 ***
+## anyArsTRUE:RegionRegion 2 -0.0253526  0.0016452 -15.410   &lt;2e-16 ***
+## anyArsTRUE:RegionRegion 3 -0.0556854  0.0017178 -32.416   &lt;2e-16 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 0.01402 on 49268 degrees of freedom
+## Multiple R-squared:  0.1382, Adjusted R-squared:  0.1381 
+## F-statistic:  1579 on 5 and 49268 DF,  p-value: &lt; 2.2e-16</code></pre>
+</div>
+<div id="problem-2" class="section level1">
+<h1>Problem 2</h1>
+<p>In part 2, I subsetted the data to only include responses in which anyArs was equal to True. I made this decision because we are only interested in results that explain the switching behavior of people who did have arsenic in their wells.</p>
+<p>In all questions, if there were results that seemed to be miscoded or that I could not infer what they meant from the code book, I did not include them in my predictions for Switching and only included variables that I could be sure of what the response meant based on the code book.</p>
+<table style="text-align:center">
+<caption>
+<strong>Relationship to Well Owner / Predict Switch</strong>
+</caption>
+<tr>
+<td colspan="2" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+<em>Dependent variable:</em>
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td colspan="1" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+Switch
+</td>
+</tr>
+<tr>
+<td colspan="2" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Rel2
+</td>
+<td>
+-0.020
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+(0.331)
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Rel3
+</td>
+<td>
+-0.868<sup>**</sup>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+(0.374)
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Constant
+</td>
+<td>
+0.868<sup>***</sup>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+(0.121)
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td colspan="2" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Observations
+</td>
+<td>
+410
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Log Likelihood
+</td>
+<td>
+-251.887
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Akaike Inf. Crit.
+</td>
+<td>
+509.774
+</td>
+</tr>
+<tr>
+<td colspan="2" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+<em>Note:</em>
+</td>
+<td style="text-align:right">
+<sup><em></sup>p&lt;0.1; <sup><strong></sup>p&lt;0.05; <sup></strong></em></sup>p&lt;0.01
+</td>
+</tr>
 </table>
+<table style="text-align:center">
+<caption>
+<strong>Reported Status of Well / Predict Switch</strong>
+</caption>
+<tr>
+<td colspan="2" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+<em>Dependent variable:</em>
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td colspan="1" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+Switch
+</td>
+</tr>
+<tr>
+<td colspan="2" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Status1
+</td>
+<td>
+-3.498<sup>***</sup>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+(0.319)
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Status2
+</td>
+<td>
+0.006
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+(0.565)
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Constant
+</td>
+<td>
+1.866<sup>***</sup>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+(0.177)
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td colspan="2" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Observations
+</td>
+<td>
+410
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Log Likelihood
+</td>
+<td>
+-166.850
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Akaike Inf. Crit.
+</td>
+<td>
+339.700
+</td>
+</tr>
+<tr>
+<td colspan="2" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+<em>Note:</em>
+</td>
+<td style="text-align:right">
+<sup><em></sup>p&lt;0.1; <sup><strong></sup>p&lt;0.05; <sup></strong></em></sup>p&lt;0.01
+</td>
+</tr>
+</table>
+<table style="text-align:center">
+<caption>
+<strong>How know status of well / Predict Switch</strong>
+</caption>
+<tr>
+<td colspan="2" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+<em>Dependent variable:</em>
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td colspan="1" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+Switch
+</td>
+</tr>
+<tr>
+<td colspan="2" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Howknow2
+</td>
+<td>
+-1.508<sup>***</sup>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+(0.349)
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Howknow3
+</td>
+<td>
+-1.443
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+(0.949)
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Constant
+</td>
+<td>
+1.849<sup>***</sup>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+(0.261)
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td colspan="2" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Observations
+</td>
+<td>
+207
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Log Likelihood
+</td>
+<td>
+-105.339
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Akaike Inf. Crit.
+</td>
+<td>
+216.678
+</td>
+</tr>
+<tr>
+<td colspan="2" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+<em>Note:</em>
+</td>
+<td style="text-align:right">
+<sup><em></sup>p&lt;0.1; <sup><strong></sup>p&lt;0.05; <sup></strong></em></sup>p&lt;0.01
+</td>
+</tr>
+</table>
+<table style="text-align:center">
+<caption>
+<strong>CU Medical Card / Predict Switch</strong>
+</caption>
+<tr>
+<td colspan="2" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+<em>Dependent variable:</em>
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td colspan="1" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+Switch
+</td>
+</tr>
+<tr>
+<td colspan="2" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Cucard1
+</td>
+<td>
+0.914<sup>***</sup>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+(0.247)
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Cucard2
+</td>
+<td>
+16.522
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+(581.975)
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Constant
+</td>
+<td>
+0.044
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+(0.211)
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td colspan="2" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Observations
+</td>
+<td>
+410
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Log Likelihood
+</td>
+<td>
+-241.227
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Akaike Inf. Crit.
+</td>
+<td>
+488.453
+</td>
+</tr>
+<tr>
+<td colspan="2" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+<em>Note:</em>
+</td>
+<td style="text-align:right">
+<sup><em></sup>p&lt;0.1; <sup><strong></sup>p&lt;0.05; <sup></strong></em></sup>p&lt;0.01
+</td>
+</tr>
+</table>
+<table style="text-align:center">
+<caption>
+<strong>Old Stat Well / Predict Switch</strong>
+</caption>
+<tr>
+<td colspan="2" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+<em>Dependent variable:</em>
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td colspan="1" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+Switch
+</td>
+</tr>
+<tr>
+<td colspan="2" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Oldstat1
+</td>
+<td>
+1.805<sup>***</sup>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+(0.658)
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Oldstat2
+</td>
+<td>
+0.296
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+(0.406)
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Oldstat3
+</td>
+<td>
+-2.439<sup>***</sup>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+(0.409)
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Constant
+</td>
+<td>
+1.139<sup>***</sup>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+(0.287)
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td colspan="2" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Observations
+</td>
+<td>
+274
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Log Likelihood
+</td>
+<td>
+-123.021
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Akaike Inf. Crit.
+</td>
+<td>
+254.042
+</td>
+</tr>
+<tr>
+<td colspan="2" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+<em>Note:</em>
+</td>
+<td style="text-align:right">
+<sup><em></sup>p&lt;0.1; <sup><strong></sup>p&lt;0.05; <sup></strong></em></sup>p&lt;0.01
+</td>
+</tr>
+</table>
+<table style="text-align:center">
+<caption>
+<strong>New Stat Well / Predict Switch</strong>
+</caption>
+<tr>
+<td colspan="2" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+<em>Dependent variable:</em>
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td colspan="1" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+Switch
+</td>
+</tr>
+<tr>
+<td colspan="2" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Oldstat1
+</td>
+<td>
+1.805<sup>***</sup>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+(0.658)
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Oldstat2
+</td>
+<td>
+0.296
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+(0.406)
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Oldstat3
+</td>
+<td>
+-2.439<sup>***</sup>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+(0.409)
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Constant
+</td>
+<td>
+1.139<sup>***</sup>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+(0.287)
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td colspan="2" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Observations
+</td>
+<td>
+274
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Log Likelihood
+</td>
+<td>
+-123.021
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Akaike Inf. Crit.
+</td>
+<td>
+254.042
+</td>
+</tr>
+<tr>
+<td colspan="2" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+<em>Note:</em>
+</td>
+<td style="text-align:right">
+<sup><em></sup>p&lt;0.1; <sup><strong></sup>p&lt;0.05; <sup></strong></em></sup>p&lt;0.01
+</td>
+</tr>
+</table>
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
 </body>
 </html>
-
