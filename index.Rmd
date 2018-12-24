@@ -4,3 +4,4 @@ title: "Data Analysis in R"
 
 Click through the navigation bar to see various reports and examples of my work in R. 
 
+Click here to go to my personal website: https://www.lama-ahmad.com
