@@ -2,7 +2,6 @@
 title: "American Science News Analysis: Religiosity, Party Affiliation, and Social Media"
 author: "Lama Ahmad"
 date: "12/3/2018"
-output: html_document
 ---
 
 ```{r, output = FALSE, include = FALSE, echo = FALSE}
