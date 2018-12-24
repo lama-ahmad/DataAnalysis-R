@@ -1,0 +1,571 @@
+---
+title: "American Science News Analysis: Religiosity, Party Affiliation, and Social Media"
+author: "Lama Ahmad"
+date: "12/3/2018"
+output: html_document
+---
+
+```{r, output = FALSE, include = FALSE, echo = FALSE}
+
+library(foreign)
+library(ggplot2)
+library(arm)
+library(stargazer)
+
+ps <- read.spss("~/code/DataAnalysis/finalproject/pew_science.sav")
+ps <- as.data.frame(ps)
+
+#standardization function
+std.func <- function(x){
+  (x - mean(x, na.rm = T))/sd(x, na.rm = T)
+}
+
+```
+
+``` {r output = FALSE, include = FALSE, echo = FALSE}
+
+#Recoding variables
+
+#Religious Service Attendance Frequency
+ps$DOV_PPP20072 <- factor(ps$DOV_PPP20072, levels = c("Refused", "Never", "Once a year or less", "A few times a year", "Once or twice a month", "Once a week", "More than once a week"))
+
+#Recategorizing the Religious Service Attendance Frequency
+for (i in 1:length(ps$DOV_PPP20072)) {
+  if(ps$DOV_PPP20072[i] == "More than once a week" & !is.na(ps$DOV_PPP20072[i]) | 
+     ps$DOV_PPP20072[i]=="Once a week" & !is.na(ps$DOV_PPP20072[i]) |
+     ps$DOV_PPP20072[i]=="Once or twice a month" & !is.na(ps$DOV_PPP20072[i]))
+  {
+    ps$rsatt[i] = "Frequently"
+  }
+  else if(ps$DOV_PPP20072[i] == "A few times a year" & !is.na(ps$DOV_PPP20072[i]) |
+          ps$DOV_PPP20072[i]=="Once a year or less" & !is.na(ps$DOV_PPP20072[i])) {
+    ps$rsatt[i] = "Infrequently"
+  }
+  else if(ps$DOV_PPP20072[i] == "Never" & !is.na(ps$DOV_PPP20072[i])) {
+    ps$rsatt[i] = "Never"
+  }
+  else {
+    ps$rsatt[i] = NA
+  }
+}
+
+#Interest in Science News
+ps$TOPICINT_e <- factor(ps$TOPICINT_e, levels = rev(levels(ps$TOPICINT_e)))
+
+#Dummy Variable Interest in Science News (Where Interested = 1, Not Interested = 0, Refused / NA = NA)
+for (i in 1:length(ps$TOPICINT_e)) {
+  if(ps$TOPICINT_e[i] == "Very interested" & !is.na(ps$TOPICINT_e[i]) | ps$TOPICINT_e[i]=="Somewhat interested" & !is.na(ps$TOPICINT_e[i])) {
+    ps$topicint[i] = 1
+  }
+  else if(ps$TOPICINT_e[i] == "Not too interested" & !is.na(ps$TOPICINT_e[i]) | ps$TOPICINT_e[i]=="Not at all interested" & !is.na(ps$TOPICINT_e[i])) {
+    ps$topicint[i] = 0
+  }
+  else {
+    ps$topicint[i] = NA
+  }
+}
+
+ps$topicint <- as.numeric(ps$topicint)
+
+#Frequency of Reading Science News
+ps$SCIOFTEN <- factor(ps$SCIOFTEN, levels = rev(levels(ps$SCIOFTEN)))
+
+#Dummy Variable of Frequency of Reading Science News (1 = Frequently Read, 0 = Infrequently Read)
+for (i in 1:length(ps$SCIOFTEN)) {
+  if(ps$SCIOFTEN[i] == "Nearly every day" & !is.na(ps$SCIOFTEN[i]) |
+     ps$SCIOFTEN[i]=="A few times a week" & !is.na(ps$SCIOFTEN[i])) 
+  {
+    ps$readsci[i] = 1
+  }
+  else if(ps$SCIOFTEN[i] == "A few times a month" & !is.na(ps$SCIOFTEN[i]) | 
+          ps$SCIOFTEN[i]=="Less often" & !is.na(ps$SCIOFTEN[i])) {
+    ps$readsci[i] = 0
+  }
+  else {
+    ps$readsci[i] = NA
+  }
+}
+
+ps$readsci <- as.numeric(ps$readsci)
+
+#Dummy Variable for SM As Important News Source
+
+for (i in 1:length(ps$SNSSCIIMP)) {
+  if(ps$SNSSCIIMP[i] == "Social media are the most important way I get science news" & !is.na(ps$SNSSCIIMP[i]) |
+     ps$SNSSCIIMP[i] == "Social media are an important way I get science news, but not the most important" & !is.na(ps$SNSSCIIMP[i])) 
+     {
+       ps$smimp[i] = 1
+     }
+     else if(ps$SNSSCIIMP[i] == "Social media are not a very important way I get science news" & !is.na(ps$SNSSCIIMP[i]))
+     {
+        ps$smimp[i] = 0
+     }
+     else {
+       ps$smimp[i] = NA
+     }
+}
+
+```
+
+```{r output = FALSE, include = FALSE, echo = FALSE}
+
+#Subset the dataset into only people who use SM 
+
+ps2 <- subset(ps, SNSUSE == "Yes")
+
+#Creating a social media science news engagement score
+
+ps2$SNSFREQ_n <- factor(ps2$SNSFREQ, levels = rev(levels(ps2$SNSFREQ)))
+ps2$SNSFREQ_n <- as.numeric(ps2$SNSFREQ_n)
+
+for (i in 1:length(ps2$SNSFREQ_n)) {
+  if(ps2$SNSFREQ_n[i] == 6 | is.na(ps2$SNSFREQ_n[i])) {
+    ps2$SNSFREQ_n[i] = 0
+  }
+}
+
+#
+
+ps2$FOLLOW_n <- factor(ps2$FOLLOW, levels = rev(levels(ps2$FOLLOW)))
+ps2$FOLLOW_n <- as.numeric(ps2$FOLLOW_n)
+
+for (i in 1:length(ps2$FOLLOW_n)) {
+  if(ps2$FOLLOW_n[i] == 3 | ps2$FOLLOW_n[i] == 2 | is.na(ps2$FOLLOW_n[i])) {
+    ps2$FOLLOW_n[i] = 0
+  }
+}
+
+
+#
+
+ps2$FOLLOWANTI_n <- factor(ps2$FOLLOWANTI, levels = rev(levels(ps2$FOLLOWANTI)))
+ps2$FOLLOWANTI_n <- as.numeric(ps2$FOLLOWANTI_n)
+
+for (i in 1:length(ps2$FOLLOWANTI_n)) {
+  if(ps2$FOLLOWANTI_n[i] == 3 | ps2$FOLLOWANTI_n[i] == 2 | is.na(ps2$FOLLOWANTI_n[i])) {
+    ps2$FOLLOWANTI_n[i] = 0
+  }
+}
+
+#
+
+ps2$SNSSCI_n <- factor(ps2$SNSSCI, levels = rev(levels(ps2$SNSSCI)))
+ps2$SNSSCI_n <- as.numeric(ps2$SNSSCI_n)
+
+for (i in 1:length(ps2$SNSSCI_n)) {
+  if(ps2$SNSSCI_n[i] == 5 | ps2$SNSSCI_n[i] == 1 | is.na(ps2$SNSSCI_n[i])) {
+    ps2$SNSSCI_n[i] = 0
+  }
+}
+
+#
+
+ps2$SNSCLICK_n <- factor(ps2$SNSCLICK, levels = rev(levels(ps2$SNSCLICK)))
+ps2$SNSCLICK_n <- as.numeric(ps2$SNSCLICK_n)
+
+for (i in 1:length(ps2$SNSCLICK_n)) {
+  if(ps2$SNSCLICK_n[i] == 5 | is.na(ps2$SNSCLICK_n[i])) {
+    ps2$SNSCLICK_n[i] = 0
+  }
+}
+
+#
+
+ps2$SNSSCIIMP_n <- factor(ps2$SNSSCIIMP, levels = rev(levels(ps2$SNSSCIIMP)))
+ps2$SNSSCIIMP_n <- as.numeric(ps2$SNSSCIIMP_n)
+
+for (i in 1:length(ps2$SNSSCIIMP_n)) {
+  if(ps2$SNSSCIIMP_n[i] == 4 | is.na(ps2$SNSSCIIMP_n[i])) {
+    ps2$SNSSCIIMP_n[i] = 0
+  }
+}
+
+ps2$SMScore <- ps2$SNSFREQ_n + ps2$FOLLOW_n + ps2$FOLLOWANTI_n + ps2$SNSSCI_n + ps2$SNSCLICK_n + ps2$SNSSCIIMP_n
+
+#SNSFREQ
+#FOLLOW
+#FOLLOWANTI
+#SNSSCI
+#SNSCLICK
+#SNSCIIMP
+
+```
+
+## Background Information
+
+There are various issues that relate to science and technology in the political sphere today. We see many political actors on various sides of science related issues. For example, one of the most contentious issues today is climate change. Other issues that are visible include the use of natural gas, vaccinations, the ethics of genetic modification, and technology and data privacy. 
+
+To have an informed opinion about these issues it is important to read well-written and reliable content about scientific advancements and issues. Social media has certainly changed the way we consume news (including science news). While on one hand social media could be making conttent more accessible to a broader audience, it is also more difficult to discern what is reliable content vs what is propaganda. 
+
+The survey data used is from the 2017 Pew Research Center survey of U.S. adults about science news and information. The survey had a sample size of 4,024 adults, 18 years of age or older, living in all 50 U.S. states and the District of Columbia. Retrieved from: http://www.journalism.org/dataset/2017-pew-research-center-science-and-news-survey/
+
+## Hypotheses
+
+Politicized identities including racial identities, political party affiliation and ideology, and religious groups are hypothesized to engage with social media and science concepts in different ways. I am interested in how these hypotheses intersect, and in this paper I will test the following ideas:
+
+- Hypothesis 1: As frequency of religious service attendance increases, interest in science news decreases and frequency of reading science news decreases
+
+- Hypothesis 2: There are differences across political party affiliation in terms of interest in science news and frequency of reading science news
+
+- Hypothesis 3: There are differences among different groups of people who engage with science news on social media
+
+## HYPOTHESIS 1: Religiosity and Science News
+
+Oveall, there is not a significant relationship between religiosity (measured by frequency of attending religious services) and interest in science news. For the purposes of this analysis, I recoded the interest likert scale to interested / not interested as a binary variable in order to use a logistic regression to calculate the probability of being interested in science news based on frequency of attending religious services. On average, people who frequently, infrequently, and never attend to religious services have a 68% probability of being interested in science news.
+
+``` {r, echo = FALSE, results = 'asis'}
+glm.1.1 <- glm(topicint ~ rsatt, data = ps, family = binomial(link = 'logit'), na.action = na.exclude)
+
+rati <- data.frame(
+    rsatt = c("Frequently", "Infrequently", "Never"))
+
+pred.rati <- predict(glm.1.1, newdata = rati, type="response", se.fit = T)
+
+prati <- data.frame(
+  lower = invlogit(pred.rati$fit - 2*pred.rati$se.fit),
+  mid = invlogit(pred.rati$fit),2,
+  upper = invlogit(pred.rati$fit + 2*pred.rati$se.fit),
+  Type = paste(rati$rsatt, sep = " ")
+)
+
+ggplot(subset(prati, Type != "Refused")) + geom_pointrange(aes(x = Type, ymin = lower, ymax = upper, y = mid)) + ylim(0.65, 0.70) + theme_bw() + labs(x = "Religious Service Attendance Frequency", y = "Predicted Proabability of Interest in Science News", title = "Interest in Science News by Religiosity")
+
+```
+
+In terms of probability of reading science news, I recoded the survey question to categorize people who frequently read science news (a few time or multiple times a week), as frequent readers (1), and others who answered a few times a month or less as infrequent readers (0). In this case, people who frequently or infrequently attend religious services have a 59% probability on avereage of reading science news. People who never attend religious services have a 60% probability on average of reading science news. However, what is interesting is looking at the confidence intervals of the frequent vs infrequent religious service attendees - frequent attendees can go as low as 58% probability of reading science news and infrequent attendees can go as high as a 60% probability of reading science news. 
+
+``` {r, echo = FALSE, results = 'asis'}
+
+glm.1.1.2 <- glm(readsci ~ rsatt, data = ps, family = binomial(link = 'logit'), na.action = na.exclude)
+
+ratr <- data.frame(
+    rsatt = c("Frequent", "Infrequent", "Never"))
+
+pred.ratr <- predict(glm.1.1.2, newdata = rati, type="response", se.fit = T)
+
+pratr <- data.frame(
+  lower = invlogit(pred.ratr$fit - 2*pred.ratr$se.fit),
+  mid = invlogit(pred.ratr$fit),
+  upper = invlogit(pred.ratr$fit + 2*pred.ratr$se.fit),
+  Type = paste(ratr$rsatt, sep = " ")
+)
+
+ggplot(subset(pratr, Type != "Refused")) + geom_pointrange(aes(x = Type, ymin = lower, ymax = upper, y = mid)) + theme_bw() + labs(x = "Religious Service Attendance Frequency", y = "Predicted Proabability of Reading Science News", title = "Frequency of Reading Science News by Religiosity")
+
+```
+
+I looked at whether frequency of religious attendance and the probability of reading science news depended on gender. While the results again showed that there is not a significant relationship between frequency of religious attendance and probability of reporting interest in science news, it is notable that women had a lower probability than men of being interested in science news across the board. On average, women have a 2% lower probability than men of being interested in science news.
+
+```{r, echo = FALSE, results = 'asis'}
+glm.1.2 <- glm(topicint ~ rsatt * PPGENDER, data = ps, family = binomial(link = 'logit'), na.action = na.exclude)
+
+ratig <- data.frame(
+    rsatt = c(rep("Frequently", 2), rep("Infrequently", 2), rep("Never", 2)),
+    PPGENDER = rep(c("Male", "Female"), 3))
+
+pred.ratig <- predict(glm.1.2, newdata = ratig, type="response", se.fit = T)
+
+pratig <- data.frame(
+  lower = invlogit(pred.ratig$fit - 2*pred.ratig$se.fit),
+  mid = invlogit(pred.ratig$fit),
+  upper = invlogit(pred.ratig$fit + 2*pred.ratig$se.fit),
+  Type = paste(ratig$PPGENDER, ratig$rsatt, sep = ", ")
+)
+
+ggplot(subset(pratig, Type != "Refused")) + geom_pointrange(aes(x = Type, ymin = lower, ymax = upper, y = mid)) +
+  theme_bw() + theme(axis.text.x = element_text(angle = 45, vjust = .5)) + labs(x = "Gender & Religious Service Attendance Frequency", y = "Predicted Proabability of Interest in Science News", title = "Interest in Science News by Religiosity & Gender")
+
+
+```
+
+Women experience the greatest variation in likelihood of reading science news compared to Men. Women who infrequently attend religious services have a 57% probability of reading science news, women who frequently attend religious services have a 58% probability of reading science news, and women who never attend religious services have a 60% probability of reading science news. By contrast, men have an avereage of 61% probability of reading science news across the board. 
+
+```{r, echo = FALSE, results = 'asis'}
+glm.1.2.1 <- glm(readsci ~ rsatt * PPGENDER, data = ps, family = binomial(link = 'logit'), na.action = na.exclude)
+
+ratrg <- data.frame(
+    rsatt = c(rep("Frequently", 2), rep("Infrequently", 2), rep("Never", 2)),
+    PPGENDER = rep(c("Male", "Female"), 3))
+
+pred.ratrg <- predict(glm.1.2.1, newdata = ratrg, type="response", se.fit = T)
+
+pratrg <- data.frame(
+  lower = invlogit(pred.ratrg$fit - 2*pred.ratrg$se.fit),
+  mid = invlogit(pred.ratrg$fit),
+  upper = invlogit(pred.ratrg$fit + 2*pred.ratrg$se.fit),
+  Type = paste(ratig$PPGENDER, ratrg$rsatt, sep = " ")
+)
+
+ggplot(subset(pratrg, Type != "Refused")) + geom_pointrange(aes(x = Type, ymin = lower, ymax = upper, y = mid)) + theme_bw() + theme(axis.text.x = element_text(angle = 45, vjust = .5)) + labs(x = "Gender & Religious Service Attendance Frequency", y = "Predicted Proabability of Reading Science News", title = "Frequency of Reading Science News by Religiosity & Gender")
+
+```
+
+People who have a bachelor's degree or higher have the highest probability of being interested in science news at about 70% on average regardless of frequency of religious service attendance. 
+
+People who have some college education have a 67% average probability of being interested in science news if they infrequently attend religious services, and a 68% average probability of being interested in science news if they frequently or never attend religious services. 
+
+People who have a high school education have a 65% average probability of being interested in science news across all frequencies of attending religious services.
+
+People who have less than a high school education that have never or frequently attend religious services have a 64% average probability of being interested in science news, and people who infrequently attend religious services have a 65% average probability of being interested in science news. 
+
+```{r, echo = FALSE, results = 'asis'}
+
+glm.1.5 <- glm(topicint ~ rsatt * PPEDUCAT, data = ps, family = binomial(link = 'logit'), na.action = na.exclude)
+
+ratied <- data.frame(
+    PPEDUCAT = c(rep("Less than high school", 3), rep("High school", 3), rep("Some college", 3), rep("Bachelor's degree or higher", 3)),
+    rsatt = rep(c("Frequently", "Infrequently", "Never"), 4))
+
+pred.ratied <- predict(glm.1.5, newdata = ratied, type="response", se.fit = T)
+
+pratied <- data.frame(
+  lower = invlogit(pred.ratied$fit - 2*pred.ratied$se.fit),
+  mid = invlogit(pred.ratied$fit),
+  upper = invlogit(pred.ratied$fit + 2*pred.ratied$se.fit),
+  Type = paste(ratied$PPEDUCAT, ratied$rsatt, sep = " ")
+)
+
+ggplot(subset(pratied, Type != "Refused")) + geom_pointrange(aes(x = Type, ymin = lower, ymax = upper, y = mid)) +
+  theme_bw() + theme(axis.text.x = element_text(angle = 90, vjust = .5)) + labs(x = "Level of Education & Religious Service Attendance Frequency", y = "Predicted Proabability of Interest in Science News", title = "Interest in Science News by Religiosity & Education")
+
+```
+
+People who have a bachelor's degree or higher have the highest probability of being frequent readers of science news at about 62% if they frequently attend religious services, and 64% if they infrequently or never attend religious services. 
+
+People who have some college education have a 60% average probability of being frequent readers of science news if they frequently or infrequently attend religious services, and a 63% average probability of being frequent readers of science news if they never attend religious services. 
+
+People who have a high school education have a 56% average probability of being frequent readers of science news if they attend religious services frequently, and a 57% average probability of being frequent readers of science news if they attend religious services infrequently or never.
+
+People who have less than a high school education that infrequently or frequently attend religious services have a 58% average probability of being frequent readers of science news, and a 57% average probability of being frequent readers of science news if they never attend religious services.
+
+
+```{r, echo = FALSE, results = 'asis'}
+
+glm.1.5.1 <- glm(readsci ~ rsatt * PPEDUCAT, data = ps, family = binomial(link = 'logit'), na.action = na.exclude)
+
+ratred <- data.frame(
+    PPEDUCAT = c(rep("Less than high school", 3), rep("High school", 3), rep("Some college", 3), rep("Bachelor's degree or higher", 3)),
+    rsatt = rep(c("Frequently", "Infrequently", "Never"), 4))
+
+pred.ratred <- predict(glm.1.5.1, newdata = ratred, type="response", se.fit = T)
+
+pratred <- data.frame(
+  lower = invlogit(pred.ratred$fit - 2*pred.ratred$se.fit),
+  mid = invlogit(pred.ratred$fit),
+  upper = invlogit(pred.ratred$fit + 2*pred.ratred$se.fit),
+  Type = paste(ratred$PPEDUCAT, ratred$rsatt, sep = " ")
+)
+
+ggplot(subset(pratred, Type != "Refused")) + geom_pointrange(aes(x = Type, ymin = lower, ymax = upper, y = mid)) +
+  theme_bw() + theme(axis.text.x = element_text(angle = 90, vjust = .5)) + labs(x = "Level of Education & Religious Service Attendance Frequency", y = "Predicted Proabability of Reading Science News", title = "Frequency of Reading Science News by Religiosity & Education")
+
+```
+
+Although the differences are not statistically significant, there are some interesting patterns that emerge when we look at frequency of religious service attendance and interest in science news by ethnicity. 
+
+The least change happens across White people. They are 68% likely to be interested in science news across all frequencies.
+
+Black people who frequently attend religious services are 66% likely to be interested in science news, Black people who infrequently attend religious services are 68% likely to be interested in science news, and black people who never attend religious services are 65% likely to be interested in science news.
+
+People who are categorized as other are 67% likely to be interested in science news if they frequently attend religious services, 71% likely to be interested in science news if they infrequently attend religious services, and 66% likely to be interested in science news if they never attend religious services.
+
+People who are Hispanic are 67% likely to be interested in science news if they frequently attend religious services, 69% likely to be interested in science news if they infrequently attend religious services, and 68% likely to be interested in science news if they never attend religious services. 
+
+For people who are 2+ Races and frequently attend religious services, they are 66% on average likely to be interested in science news, infrequently and never 67% on average likely to be interested in science news
+
+```{r, echo = FALSE, results = 'asis'}
+glm.1.3 <- glm(topicint ~ rsatt * PPETHM, data = ps, family = binomial(link = 'logit'), na.action = na.exclude)
+
+ratie <- data.frame(
+    rsatt = c(rep("Frequently", 5), rep("Infrequently", 5), rep("Never", 5)),
+    PPETHM = rep(c("White, Non-Hispanic", "Black, Non-Hispanic", "Other, Non-Hispanic", "Hispanic", "2+ Races, Non-Hispanic"), 3))
+
+pred.ratie <- predict(glm.1.3, newdata = ratie, type="response", se.fit = T)
+
+pratie <- data.frame(
+  lower = invlogit(pred.ratie$fit - 2*pred.ratie$se.fit),
+  mid = invlogit(pred.ratie$fit),
+  upper = invlogit(pred.ratie$fit + 2*pred.ratie$se.fit),
+  Type = paste(ratie$PPETHM, ratie$rsatt, sep = " ")
+)
+
+ggplot(subset(pratie, Type != "Refused")) + geom_pointrange(aes(x = Type, ymin = lower, ymax = upper, y = mid)) +
+  theme_bw() + theme(axis.text.x = element_text(angle = 90, vjust = .5))  + labs(x = "Ethnicity & Religious Service Attendance Frequency", y = "Predicted Proabability of Interest in Science News", title = "Interest in Science News by Religiosity & Ethnicity")
+
+
+```
+
+
+Breaking up the data by region (Northeast, Midwest, South, and West) also yields some interesting results. 
+
+People in the West who infrequently and never attend religous services have the highest probability of being interested in science news. People in the West who infrequently and never attend religious services have a 71% or 70% probability on average of being interested in science news.
+
+People in the South do not experience much change in probability of being interested in science news whether they frequently, infrequently, or never attend religious services. They all have a 68% probability on average of being interested in science news.
+
+People in the Midwest who frequently and infrequently attend religious services have a 67% probability on average of being interested in science news. Interestingly, people in the Midwest who never attend religious services have a 66% probability on average of being interested in science news.
+
+There is a similar trend in the Northeast, where people who frequently and infrequently attend religious services have a 68% probability on average of being interested in science news. Peole in the Northeast who never attend religious services have a 67% probability on average of being interested in science news.
+
+```{r, echo = FALSE}
+glm.1.4 <- glm(topicint ~ rsatt * PPREG4, data = ps, family = binomial(link = 'logit'), na.action = na.exclude)
+
+ratir <- data.frame(
+    PPREG4 = c(rep("Northeast", 3), rep("Midwest", 3), rep("South", 3), rep("West", 3)),
+    rsatt = rep(c("Frequently", "Infrequently", "Never"), 4))
+
+pred.ratir <- predict(glm.1.4, newdata = ratir, type="response", se.fit = T)
+
+pratir <- data.frame(
+  lower = invlogit(pred.ratir$fit - 2*pred.ratir$se.fit),
+  mid = invlogit(pred.ratir$fit),
+  upper = invlogit(pred.ratir$fit + 2*pred.ratir$se.fit),
+  Type = paste(ratir$PPREG4, ratir$rsatt, sep = " ")
+)
+
+ggplot(subset(pratir, Type != "Refused")) + geom_pointrange(aes(x = Type, ymin = lower, ymax = upper, y = mid)) +
+  theme_bw() + theme(axis.text.x = element_text(angle = 90, vjust = .5)) + labs(x = "Geographic Region & Religious Service Attendance Frequency", y = "Predicted Proabability of Interest Science News", title = "Interest in Science News by Religiosity & Region")
+
+```
+
+## HYOPTHESIS 2: Interest in Science News by Party Affiliation
+
+Democrats and Independents had an average of 68% probability of being interested in science news. Republicans had an average of 66% probability of being interested in science news. People who indicated their party affiliation as 'Something Else' had an avereage of 67% probability of being interested in science news. 
+
+``` {r, echo = FALSE, results = 'asis'}
+
+glm.2.1 <- glm(topicint ~ PARTY, data = ps, family = binomial(link = 'logit'), na.action = na.exclude)
+
+pti <- data.frame(
+    PARTY = c("Republican", "Democrat", "Independent", "Something else, please specify"))
+
+pred.pti <- predict(glm.2.1, newdata = pti, type="response", se.fit = T)
+
+ppti <- data.frame(
+  lower = invlogit(pred.pti$fit - 2*pred.pti$se.fit),
+  mid = invlogit(pred.pti$fit),
+  upper = invlogit(pred.pti$fit + 2*pred.pti$se.fit),
+  Type = paste(pti$PARTY, sep = " ")
+)
+
+ggplot(subset(ppti, Type != "Refused")) + geom_pointrange(aes(x = Type, ymin = lower, ymax = upper, y = mid)) + theme_bw() + labs(x = "Party Affiliation", y = "Predicted Proabability of Interest in Science News", title = "Interest in Science News by Party Affiliation")
+
+```
+
+Democrats and Independents had an average of 60% probability of being frequent readers of science news. Republicans had an average of 58% probability of being frequent readers of science news. People who indicated their party affiliation as 'Something Else' had an avereage 67% probability of being frequent readers of science news. 
+
+``` {r, echo = FALSE, results = 'asis'}
+
+glm.2.1.1 <- glm(readsci ~ PARTY, data = ps, family = binomial(link = 'logit'), na.action = na.exclude)
+
+ptr <- data.frame(
+    PARTY = c("Republican", "Democrat", "Independent", "Something else, please specify"))
+
+pred.ptr <- predict(glm.2.1.1, newdata = pti, type="response", se.fit = T)
+
+pptr <- data.frame(
+  lower = invlogit(pred.ptr$fit - 2*pred.ptr$se.fit),
+  mid = invlogit(pred.ptr$fit),
+  upper = invlogit(pred.ptr$fit + 2*pred.ptr$se.fit),
+  Type = paste(ptr$PARTY, sep = " ")
+)
+
+ggplot(subset(pptr, Type != "Refused")) + geom_pointrange(aes(x = Type, ymin = lower, ymax = upper, y = mid)) + theme_bw() + labs(x = "Party Affiliation", y = "Predicted Proabability of Reading  Science News", title = "Reading Science News by Party Affiliation")
+
+
+```
+
+## HYPOTHESIS 3: Social Media Science News Engagement Differences
+
+The social media engagement score variable (SMScore) encompasses responses about frequency of social media use, the types of science accounts a person follows, and their engagement with social media science news posts into a numeric score ranging from 0 to 17. 0 is the least engaged with science news via social media, while 17 is the most engaged with science news via social media. 
+
+There are no significant differences in SMScore by region. On average, the Northeast has a score of 10.63, the Midwest has a score of 10.83, the South has a score of 10.91, and the West has a score of 10.99. 
+
+```{r, echo = FALSE, results = 'asis'}
+
+lm.3.1 <- lm(SMScore ~ PPREG4, ps2)
+
+ggplot(ps2, aes(x=PPREG4, y=SMScore)) + geom_boxplot() + theme_bw() + labs(x = "Geographic Region", y = "Social Media Science News Engagement Score", title = "Social Media Science News Engagement by Region")
+
+```
+
+There are no significant differences in SMScore by gender. Men have an average score of 10.91, and women have an average score of 10.82.
+
+```{r, echo = FALSE}
+
+lm.3.2 <- lm(SMScore ~ PPGENDER, ps2)
+
+ggplot(ps2, aes(x=PPGENDER, y=SMScore)) + geom_boxplot() + theme_bw() + labs(x = "Gender", y = "Social Media Science News Engagement Score", title = "Social Media Science News Engagement by Gender")
+
+```
+
+There are no significant differences in the average social media science news engaegment score among people with different frequencies of religious service attendance. People who frequently attend religious services have an average score of 10.76. People who infrequently attend religious services have an average score of 10.82. People who never attend religious services have an average score of 11.03. 
+
+```{r, echo = FALSE, results = 'asis'}
+
+lm.3.3 <- lm(SMScore ~ rsatt, subset(ps2, rsatt != "Refused"))
+
+ggplot(subset(ps2, rsatt != "Refused"), aes(x=rsatt, y=SMScore)) + geom_boxplot() + theme_bw() + labs(x = "Frequency of Religious Service Attendance", y = "Social Media Science News Engagement Score", title = "Social Media Science News Engagement by Religiosity")
+
+```
+
+There are significant differences in the average social media science news engagement score among political party affiliations. Republicans have the lowest average score at 10.59. Democrats have the highest average score of 11.05. Independents have a score of 10.94.
+
+```{r, echo = FALSE, results = 'asis'}
+
+lm.3.4 <- lm(SMScore ~ PARTY, subset(ps2, PARTY != "Refused"))
+
+ggplot(subset(ps2, PARTY != "Refused"), aes(x=PARTY, y=SMScore)) + geom_boxplot() + theme_bw() + labs(x = "Political Party Affiliation", y = "Social Media Science News Engagement Score", title = "Social Media Science News Engagement by Party Affiliation")
+
+```
+
+People with a bachelor's degree or higher and people with some college education have a significant difference in the social media science news engagement score, people who have a high school degree or less are less certain. On average, people with less than a high school degree have a score of 10.50. People with a high school degree have an average score of 10.38. People with some college have an average score of 10.92, and people with a bachelor's degree or higher have an average score of 11.5.
+
+```{r, echo = FALSE, results = 'asis'}
+
+lm.3.5 <- lm(SMScore ~ PPEDUCAT, subset(ps2, PPEDUCAT != "Refused"))
+
+ggplot(subset(ps2, PPEDUCAT != "Refused"), aes(x=PPEDUCAT, y=SMScore)) + geom_boxplot() + theme_bw() + labs(x = "Level of Education", y = "Social Media Science News Engagement Score", title = "Social Media Science News Engagement by Education")
+
+```
+
+Younger age groups (including 18-24, 25 - 34, and 35 - 44) tend to engage more with science news on social media than older age groups. On average, 18-24 year olds have a SMSscore of 11.03. 25-34 year olds have a score of 11.50, and 35 - 44 year olds have a score of 11.22. People age 45 - 54 have a score of 10.70, age 65 - 74 have a score of 10.46.
+
+```{r, echo = FALSE, results = 'asis'}
+
+lm.3.6 <- lm(SMScore ~ ppagecat, subset(ps2, ppagecat != "Refused"))
+
+ggplot(subset(ps2, ppagecat != "Refused"), aes(x=ppagecat, y=SMScore)) + geom_boxplot() + theme_bw() + labs(x = "Age Category", y = "Social Media Science News Engagement Score", title = "Social Media Science News Engagement by Age Category")
+```
+
+### CONCLUSIONS 
+
+Hypothesis 1 which stated that: "As frequency of religious service attendance increases, interest in science news decreases and frequency of reading science news decreases" was not upheld. Religious service attendance alone did not do a good job of predicting interest in science news or reading science news. When interacting religious service attendance with other variables such as Gender or Education, we see a more nuanced picture of how religiosity could be interacting with other variables and thus affecting science news consumption, but over all religiosity does not seem to have an effect on interest and reading science news. 
+
+Hypothesis 2 which stated that: "There are differences across political party affiliation in terms of interest in science news and frequency of reading science news" was upheld, we see that Democrats and Independents and people who identify as Something Else have a higher probability of both being interested in science news and reading science news. The results of the logistic regression were significant in this case.
+
+Hypothesis 3 which stated that: "There are differences among different groups of people who engage with science news on social media" was upheld, especially with regard to Age groups (Young vs. Old), Party Affiliation, and Education Level. Given these results, it is still unclear what the implications of science news engagement via social media are. It depends on the user's discretion of what is reliable vs unreliable information, and what content platforms choose to prioritize, as well as the quality of the science journalism that is available and widely circulated on social media platforms. Further research would need to be conducted to understand the behaviors of different groups when engaging with science news on social media. 
+
+There are limitations to these conclusions, which include the fact that religious service attendance does not necessarily indicate religiosity, as different religions also have different ways of expressing religiosity that do not necessarily entail going to a religious service. However, it is a good indicator for common monotheistic religions pracrticed in the United States. There is also the issue of social desirability bias in self reported survey questions, especially with regard to frequency and interest in science news. I attempted to mitigate that by using both measures of interest as well as actual frequency of reading science news. 
+
+
+### APPENDICES (TABLES)
+
+```{r, echo = FALSE, results = 'asis'}
+stargazer(glm.1.1, header=F, title ="Interest in Science News by Religiosity")
+stargazer(glm.1.1.2, header=F, title ="Reading Science News by Religiosity")
+stargazer(glm.1.2, header=F, title ="Interest in Science News by Religiosity and Gender")
+stargazer(glm.1.2.1, header = F, title = "Reading Science News by Religiosity and Gender")
+stargazer(glm.1.5, header = F,  title = "Interest in Science News by Religiosity and Education")
+stargazer(glm.1.5.1, header = F, title = "Reading Science News by Religiosity and Education")
+stargazer(glm.1.3, header = F, title = "Interest in Science News by Religiosity and Ethnicity")
+stargazer(glm.1.4, header = F,  title = "Interest in Science News by Religiosity and Region")
+stargazer(glm.2.1, header = F,  title = "Interest in Science News by Party Affiliation")
+stargazer(glm.2.1.1, header = F,  title = "Frequency of Reading Science News by Party Affiliation")
+stargazer(lm.3.1, header = F, title = "Social Media Science News Engagement by Region")
+stargazer(lm.3.2, header = F, title = "Social Media Science News Engagement by Gender")
+stargazer(lm.3.3, header = F, title = "Social Media Science News Engagement by Religiosity")
+stargazer(lm.3.4, header = F, title = "Social Media Science News Engagement by Party Affiliation")
+stargazer(lm.3.5, header = F, title = "Social Media Science News Engagement by Education")
+stargazer(lm.3.6, header = F, title = "Social Media Science News Engagement by Age Category")
+
+```
