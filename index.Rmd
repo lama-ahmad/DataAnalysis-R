@@ -1,5 +1,6 @@
 ---
-title: "index"
+title: "Data Analysis in R"
 ---
 
-Hello, website!
+Click through the navigation bar to see various reports and examples of my work in R. 
+

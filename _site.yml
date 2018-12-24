@@ -7,3 +7,5 @@ navbar:
       href: index.html
     - text: "Science News"
       href: sciencenews.html
+    - text: "Arsenic in Wells"
+      href: arsenicinwells.html
