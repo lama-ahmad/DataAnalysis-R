@@ -1,4 +1,5 @@
 name: "Data Analysis in R"
+output_dir: "docs"
 navbar:
   title: "Data Analysis in R"
   left:
