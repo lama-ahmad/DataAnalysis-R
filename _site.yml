@@ -11,3 +11,7 @@ navbar:
       href: arsenicinwells.html
     - text: "Financial Well Being"
       href: financialwellbeing.html
+output:
+  html_document:
+    theme: cosmo
+    css: 'styles.css'

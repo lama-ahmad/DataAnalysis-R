@@ -19,6 +19,20 @@ library(arm)
 library(stargazer)
 ```
 
+## Introduction and About the Data 
+
+Naturally occurring arsenic is poisonous above certain levels, and may be present in some groundwater sources.
+This is a problem in Bangladesh, where citizens get their water from local wells. Arsenic contamination varies
+widely: while one family’s well may be safe, a neighbor’s well may have unsafe levels of arsenic.
+An NGO focusing on water safety recently completed a survey of almost fifty thousand households in three
+regions of Bangladesh. The survey interviewed households to better understand two main phenomena. First,
+what factors affect well switching? Second, does arsenic cause a financial burden for families with unsafe
+levels of arsenic in their water? For the purposes of this study, wells with any arsenic presence should be
+considered as problematic for human consumption, with higher levels being increasingly toxic.
+
+The dataset wellsdata.Rds contains information on 49274 households. These households were educated about
+arsenic poisoning and provided information about arsenic levels in their local wells. If the levels were unsafe, households were encouraged to switch their water source to other local options. The households were visited one year later, and data was collected on whether or not the family had switched wells. This is recorded in the variable Switch, equal to 1 if the household switched and 0 otherwise.
+
 ### PART 1 
 
 The presence of arsenic in a well does lead to an increase in percentage of household income spent on healthcare. When there is no arsenic in the well, the percentage of household income spent on healthcare is on average .07%. When there is arsenic in the well, the percentage of household income spent on healthcare is on average .11%. 
@@ -28,7 +42,7 @@ When analyzing this effect by region, it is found that for Region 1 there is an 
 Therefore, the regional findings suggest that in term of impoverishment increased through increased spending on healthcare caused by arsenic found in wells, Region 1 has the largest difference when comparing percentage of household income spent on healthcare when there is arsenic present in the well.
 
 
-``` {r, echo=FALSE}
+``` {r, echo=FALSE, fig.align="center"}
 
 ggplot(wells, aes(x = anyArs, y=pct_hhinc_healthcare)) + geom_boxplot() + 
   labs(y = "Presence of Arsenic in Well", x = "Percentage of Household Income Spent on Healthcare", title = "Arsenic in Wells and Healthcare Spending") + theme_bw()
@@ -44,7 +58,7 @@ ggplot(wells, aes(x = anyArs, y=pct_hhinc_healthcare)) + geom_boxplot() + facet_
 
 Individuals were surveyed about their relationship with the well owner, with the assumption that information about the well could be spread differently depending on how close of a tie that the individual had with the well owner. People who reported that the well owner was close family on average had a 70% likelihood of switching wells. People who reported that the well owner was a neighbor on average had a 50% likelihood of switching wells. Lastly, though not significant and therefore uncertain due to a wide confidence interval, people who reported that the well owner was in the same bari had on average a 70% likelihood of switching wells. 
 
-```  {r, echo=FALSE}
+```  {r, echo=FALSE, fig.align="center"}
 
 wells2$Rel <- as.factor(wells2$Rel)
 
@@ -72,7 +86,7 @@ ggplot(data = pswirel) + geom_pointrange(aes(x = Type, ymin = lower, ymax = uppe
 
 If people know that they the status of the well is unsafe, on average, they have an 86% proability of switching. If people don't know the status of the well, they also have an 86% percent chance of switching on average. However, the people who don't know the status of the well also have the most uncertain outcomes. The confidence interval ranges from a 68% cchance of swtiching to a 95% chance of switching, and the results are not significant. This indicates that people who don't know the status of a well are a vulnerable group to the negative effects of wells that are contaminated by arsenic. 
 
-``` {r, echo=FALSE}
+``` {r, echo=FALSE, fig.align="center"}
 
 wells2$Status <- as.factor(wells2$Status)
 
@@ -102,7 +116,7 @@ ggplot(data = pstatswi) + geom_pointrange(aes(x = Type, ymin = lower, ymax = upp
 
 Individuals found out about the status of the well in various ways. When surveyed about how they found out about the status of the well, people who reported that they knew about the status of the well through a CU Result were on average 86% likely to switch. People who said they found out about the status of the well through the paint were on average 58% likely to switch. People who found out about the status of the well through other means were on average 60% likely to switch, but the results of people who found out about the status of the well through other means are not significant and therefore uncertain. These results indicate that a CU Card is again quite an important determinanat for well switching in households with arsenic in their wells. 
 
-``` {r, echo=FALSE}
+``` {r, echo=FALSE, fig.align="center"}
 
 wells2$Howknow <- as.factor(wells2$Howknow)
 
@@ -132,7 +146,7 @@ ggplot(data = phkswi) + geom_pointrange(aes(x = Type, ymin = lower, ymax = upper
 
 People who have a CU Medical card are most likely to switch wells when a well is found to be contaminated with arsenic. On average, people who have a CU Medical card are 72% likely to switch. People who do not have a CU Medical card are only about 51% likely to switch. However, this result is not significant because it is more uncertain, the confidence interval of switching ranges from 40% to 61%. 
 
-``` {r, echo=FALSE}
+``` {r, echo=FALSE, fig.align="center"}
 
 wells2$Cucard <- as.factor(wells2$Cucard)
 
@@ -160,7 +174,7 @@ ggplot(data = pcuswi) + geom_pointrange(aes(x = Type, ymin = lower, ymax = upper
 
 The probability of switching based on status which was visible on the well was the highest when there was a CU plate present, with an average of 95% switching based on wells that had a CU plate present. Comparatively, red paint (which is inferred to indicate a well that is not safe), only had an average of 80% switching and was not a significant result. 
 
-``` {r, echo=FALSE}
+``` {r, echo=FALSE, fig.align="center"}
 
 wells2$Oldstat <- as.factor(wells2$Oldstat)
 
@@ -190,7 +204,7 @@ ggplot(data = posswi) + geom_pointrange(aes(x = Type, ymin = lower, ymax = upper
 
 Meanwhile, the new plate indicators on the well seemed to successfully predict switching behavior. When the plate indicated that the well was unsafe, there was an 85% probability of switching on average. When the plate indicated that the well was safe, there was only a 17% probability of switching. 
 
-``` {r, echo=FALSE}
+``` {r, echo=FALSE, fig.align="center"}
 
 wells2$Newstat <- as.factor(wells2$Newstat)
 
@@ -230,10 +244,15 @@ Click here to see code: https://github.com/lama-ahmad/DataAnalysis-R/blob/master
 
 #Problem 1 
 
-```{r}
+``` {r, echo = FALSE, results = 'asis', fig.align="center"}
 
-summary(lm(pct_hhinc_healthcare ~ anyArs, data=wells))
-summary(lm(pct_hhinc_healthcare ~ anyArs * Region, data=wells))
+lm.hc.ars <- lm(pct_hhinc_healthcare ~ anyArs, data=wells)
+
+stargazer(lm.hc.ars, header = F, title = "Arsenic in Wells and % of Income Spent on Healthcare", type = "html", out="arsenicinwells.html", out.header=TRUE)
+
+lm.hc.ars.rg <- lm(pct_hhinc_healthcare ~ anyArs * Region, data=wells)
+
+stargazer(lm.hc.ars.rg, header = F, title = "Arsenic in Wells and % of Income Spent on Healthcare by Region", type = "html", out="arsenicinwells.html", out.header=TRUE)
 
 ```
 

@@ -106,7 +106,7 @@ for (i in 1:length(ps$SNSSCIIMP)) {
 
 ```
 
-```{r output = FALSE, include = FALSE, echo = FALSE}
+```{r output = FALSE, include = FALSE, echo = FALSE, fig.align="center"}
 
 #Subset the dataset into only people who use SM 
 
@@ -214,7 +214,7 @@ Politicized identities including racial identities, political party affiliation 
 
 Oveall, there is not a significant relationship between religiosity (measured by frequency of attending religious services) and interest in science news. For the purposes of this analysis, I recoded the interest likert scale to interested / not interested as a binary variable in order to use a logistic regression to calculate the probability of being interested in science news based on frequency of attending religious services. On average, people who frequently, infrequently, and never attend to religious services have a 68% probability of being interested in science news.
 
-``` {r, echo = FALSE, results = 'asis'}
+``` {r, echo = FALSE, results = 'asis', fig.align="center"}
 glm.1.1 <- glm(topicint ~ rsatt, data = ps, family = binomial(link = 'logit'), na.action = na.exclude)
 
 rati <- data.frame(
@@ -237,7 +237,7 @@ stargazer(glm.1.1, header=F, title ="Interest in Science News by Religiosity", t
 
 In terms of probability of reading science news, I recoded the survey question to categorize people who frequently read science news (a few time or multiple times a week), as frequent readers (1), and others who answered a few times a month or less as infrequent readers (0). In this case, people who frequently or infrequently attend religious services have a 59% probability on avereage of reading science news. People who never attend religious services have a 60% probability on average of reading science news. However, what is interesting is looking at the confidence intervals of the frequent vs infrequent religious service attendees - frequent attendees can go as low as 58% probability of reading science news and infrequent attendees can go as high as a 60% probability of reading science news. 
 
-``` {r, echo = FALSE, results = 'asis'}
+``` {r, echo = FALSE, results = 'asis', fig.align="center"}
 
 glm.1.1.2 <- glm(readsci ~ rsatt, data = ps, family = binomial(link = 'logit'), na.action = na.exclude)
 
@@ -261,7 +261,7 @@ stargazer(glm.1.1.2, header=F, title ="Reading Science News by Religiosity", typ
 
 I looked at whether frequency of religious attendance and the probability of reading science news depended on gender. While the results again showed that there is not a significant relationship between frequency of religious attendance and probability of reporting interest in science news, it is notable that women had a lower probability than men of being interested in science news across the board. On average, women have a 2% lower probability than men of being interested in science news.
 
-```{r, echo = FALSE, results = 'asis'}
+```{r, echo = FALSE, results = 'asis', fig.align="center"}
 glm.1.2 <- glm(topicint ~ rsatt * PPGENDER, data = ps, family = binomial(link = 'logit'), na.action = na.exclude)
 
 ratig <- data.frame(
@@ -285,7 +285,7 @@ stargazer(glm.1.2, header = F, title = "Interest in Science News by Religiosity 
 
 Women experience the greatest variation in likelihood of reading science news compared to Men. Women who infrequently attend religious services have a 57% probability of reading science news, women who frequently attend religious services have a 58% probability of reading science news, and women who never attend religious services have a 60% probability of reading science news. By contrast, men have an avereage of 61% probability of reading science news across the board. 
 
-```{r, echo = FALSE, results = 'asis'}
+```{r, echo = FALSE, results = 'asis', fig.align="center"}
 glm.1.2.1 <- glm(readsci ~ rsatt * PPGENDER, data = ps, family = binomial(link = 'logit'), na.action = na.exclude)
 
 ratrg <- data.frame(
@@ -315,7 +315,7 @@ People who have a high school education have a 65% average probability of being 
 
 People who have less than a high school education that have never or frequently attend religious services have a 64% average probability of being interested in science news, and people who infrequently attend religious services have a 65% average probability of being interested in science news. 
 
-```{r, echo = FALSE, results = 'asis'}
+```{r, echo = FALSE, results = 'asis', fig.align="center"}
 
 glm.1.5 <- glm(topicint ~ rsatt * PPEDUCAT, data = ps, family = binomial(link = 'logit'), na.action = na.exclude)
 
@@ -347,7 +347,7 @@ People who have a high school education have a 56% average probability of being 
 People who have less than a high school education that infrequently or frequently attend religious services have a 58% average probability of being frequent readers of science news, and a 57% average probability of being frequent readers of science news if they never attend religious services.
 
 
-```{r, echo = FALSE, results = 'asis'}
+```{r, echo = FALSE, results = 'asis', fig.align="center"}
 
 glm.1.5.1 <- glm(readsci ~ rsatt * PPEDUCAT, data = ps, family = binomial(link = 'logit'), na.action = na.exclude)
 
@@ -383,7 +383,7 @@ People who are Hispanic are 67% likely to be interested in science news if they 
 
 For people who are 2+ Races and frequently attend religious services, they are 66% on average likely to be interested in science news, infrequently and never 67% on average likely to be interested in science news
 
-```{r, echo = FALSE, results = 'asis'}
+```{r, echo = FALSE, results = 'asis', fig.align="center"}
 glm.1.3 <- glm(topicint ~ rsatt * PPETHM, data = ps, family = binomial(link = 'logit'), na.action = na.exclude)
 
 ratie <- data.frame(
@@ -416,7 +416,7 @@ People in the Midwest who frequently and infrequently attend religious services 
 
 There is a similar trend in the Northeast, where people who frequently and infrequently attend religious services have a 68% probability on average of being interested in science news. Peole in the Northeast who never attend religious services have a 67% probability on average of being interested in science news.
 
-```{r, echo = FALSE}
+```{r, echo = FALSE, results='asis', fig.align="center"}
 glm.1.4 <- glm(topicint ~ rsatt * PPREG4, data = ps, family = binomial(link = 'logit'), na.action = na.exclude)
 
 ratir <- data.frame(
@@ -432,17 +432,17 @@ pratir <- data.frame(
   Type = paste(ratir$PPREG4, ratir$rsatt, sep = " ")
 )
 
-ggplot(subset(pratir, Type != "Refused")) + geom_pointrange(aes(x = Type, ymin = lower, ymax = upper, y = mid)) +
-  theme_bw() + theme(axis.text.x = element_text(angle = 90, vjust = .5)) + labs(x = "Geographic Region & Religious Service Attendance Frequency", y = "Predicted Proabability of Interest Science News", title = "Interest in Science News by Religiosity & Region")
+ggplot(subset(pratir, Type != "Refused")) + geom_pointrange(aes(x = Type, ymin = lower, ymax = upper, y = mid)) + theme_bw() + theme(axis.text.x = element_text(angle = 90, vjust = .5)) + labs(x = "Geographic Region & Religious Service Attendance Frequency", y = "Predicted Proabability of Interest Science News", title = "Interest in Science News by Religiosity & Region")
 
-stargazer(glm.1.4, header = F,  title = "Interest in Science News by Religiosity and Region", type = "html", out="sciencenews.html", out.header=TRUE)
+stargazer(glm.1.4, header = F, title = "Interest in Science News by Religiosity and Region", type = "html", out = "sciencenews.html", out.header = TRUE)
+
 ```
 
 ## HYOPTHESIS 2: Interest in Science News by Party Affiliation
 
 Democrats and Independents had an average of 68% probability of being interested in science news. Republicans had an average of 66% probability of being interested in science news. People who indicated their party affiliation as 'Something Else' had an avereage of 67% probability of being interested in science news. 
 
-``` {r, echo = FALSE, results = 'asis'}
+``` {r, echo = FALSE, results = 'asis', fig.align="center"}
 
 glm.2.1 <- glm(topicint ~ PARTY, data = ps, family = binomial(link = 'logit'), na.action = na.exclude)
 
@@ -465,7 +465,7 @@ stargazer(glm.2.1, header = F,  title = "Interest in Science News by Party Affil
 
 Democrats and Independents had an average of 60% probability of being frequent readers of science news. Republicans had an average of 58% probability of being frequent readers of science news. People who indicated their party affiliation as 'Something Else' had an avereage 67% probability of being frequent readers of science news. 
 
-``` {r, echo = FALSE, results = 'asis'}
+``` {r, echo = FALSE, results = 'asis', fig.align="center"}
 
 glm.2.1.1 <- glm(readsci ~ PARTY, data = ps, family = binomial(link = 'logit'), na.action = na.exclude)
 
@@ -492,7 +492,7 @@ The social media engagement score variable (SMScore) encompasses responses about
 
 There are no significant differences in SMScore by region. On average, the Northeast has a score of 10.63, the Midwest has a score of 10.83, the South has a score of 10.91, and the West has a score of 10.99. 
 
-```{r, echo = FALSE, results = 'asis'}
+```{r, echo = FALSE, results = 'asis', fig.align="center"}
 
 lm.3.1 <- lm(SMScore ~ PPREG4, ps2)
 
@@ -503,7 +503,7 @@ stargazer(lm.3.1, header = F, title = "Social Media Science News Engagement by R
 
 There are no significant differences in SMScore by gender. Men have an average score of 10.91, and women have an average score of 10.82.
 
-```{r, echo = FALSE}
+```{r, echo = FALSE, results='asis', fig.align="center"}
 
 lm.3.2 <- lm(SMScore ~ PPGENDER, ps2)
 
@@ -514,7 +514,7 @@ stargazer(lm.3.2, header = F, title = "Social Media Science News Engagement by G
 
 There are no significant differences in the average social media science news engaegment score among people with different frequencies of religious service attendance. People who frequently attend religious services have an average score of 10.76. People who infrequently attend religious services have an average score of 10.82. People who never attend religious services have an average score of 11.03. 
 
-```{r, echo = FALSE, results = 'asis'}
+```{r, echo = FALSE, results = 'asis', fig.align="center"}
 
 lm.3.3 <- lm(SMScore ~ rsatt, subset(ps2, rsatt != "Refused"))
 
@@ -525,7 +525,7 @@ stargazer(lm.3.3, header = F, title = "Social Media Science News Engagement by R
 
 There are significant differences in the average social media science news engagement score among political party affiliations. Republicans have the lowest average score at 10.59. Democrats have the highest average score of 11.05. Independents have a score of 10.94.
 
-```{r, echo = FALSE, results = 'asis'}
+```{r, echo = FALSE, results = 'asis', fig.align="center"}
 
 lm.3.4 <- lm(SMScore ~ PARTY, subset(ps2, PARTY != "Refused"))
 
@@ -536,7 +536,7 @@ stargazer(lm.3.4, header = F, title = "Social Media Science News Engagement by P
 
 People with a bachelor's degree or higher and people with some college education have a significant difference in the social media science news engagement score, people who have a high school degree or less are less certain. On average, people with less than a high school degree have a score of 10.50. People with a high school degree have an average score of 10.38. People with some college have an average score of 10.92, and people with a bachelor's degree or higher have an average score of 11.5.
 
-```{r, echo = FALSE, results = 'asis'}
+```{r, echo = FALSE, results = 'asis', fig.align="center"}
 
 lm.3.5 <- lm(SMScore ~ PPEDUCAT, subset(ps2, PPEDUCAT != "Refused"))
 
@@ -547,7 +547,7 @@ stargazer(lm.3.5, header = F, title = "Social Media Science News Engagement by E
 
 Younger age groups (including 18-24, 25 - 34, and 35 - 44) tend to engage more with science news on social media than older age groups. On average, 18-24 year olds have a SMSscore of 11.03. 25-34 year olds have a score of 11.50, and 35 - 44 year olds have a score of 11.22. People age 45 - 54 have a score of 10.70, age 65 - 74 have a score of 10.46.
 
-```{r, echo = FALSE, results = 'asis'}
+```{r, echo = FALSE, results = 'asis', fig.align="center"}
 
 lm.3.6 <- lm(SMScore ~ ppagecat, subset(ps2, ppagecat != "Refused"))
 

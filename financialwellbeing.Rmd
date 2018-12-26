@@ -34,14 +34,14 @@ df <- subset(df, BENEFITS_1 != "Refused")
 
 ```
 
-```{r, echo = FALSE}
+```{r, echo = FALSE, fig.align="center"}
 ggplot(df, aes(x=as.numeric(SWB_1), y=as.numeric(FWBscore))) + geom_point(alpha = 0.1) + geom_smooth(method = "lm") + theme_bw() + xlab("Life Satisfaction Rating") + ylab("Financial Well-Being Score") + ggtitle("Life Satisfaction and Financial Well-Being")
 
 ```
 
 There is also a positive relationship between an individual's Psychological Connectedness Score and Life Satisfaction rating. For each one digit increase in life satisfaction rating, the psychological connectedness score increased by about 3 points. An individual that rates their life satisfaction as 1 (Strongly disagree that they are satisfied with their life) has an average psychological connectedness score of 40, while an individual that rates their life sastifaction as 7 (Strong agree that they are satisfied with their life), has an average financial well-being score of 55. 
 
-```{r, echo=FALSE}
+```{r, echo=FALSE, fig.align="center"}
 ggplot(data = df, aes(x=as.numeric(SWB_1), y=as.numeric(CONNECT))) + 
   geom_point(alpha = 0.1) + stat_smooth(method = "lm", col = "red") + theme_bw() +
   xlab("Life Satisfaction Rating") + ylab("Psychological Connectedness Score") + ggtitle("Life Satisfaction and Psychological Connectedness")
@@ -53,7 +53,7 @@ Given that there is a greater average point increase between financial well-bein
 
 We know that there is a positive relationship between financial well-being and life satisfaction (see above). There is also a positive relationship between psychological connectedness and financial well-being. For every 1 point increase in financial well-being, connectedness increases by 0.2 points. Therefore, there is a slight tie between connectedness and financial well being that indirectly leads to incrased life satisfaction. 
 
-``` {r, echo = FALSE}
+``` {r, echo = FALSE, fig.align="center"}
 ggplot(df, aes(x=as.numeric(CONNECT), y=as.numeric(FWBscore))) + geom_point() + geom_smooth(method = "lm") + theme_bw() + xlab("Level of Pscyhological Connectedness") + ylab("Financial Well-Being Score") + ggtitle("Psychological Connectedness and Financial Well-Being")
 ```
 
@@ -61,17 +61,17 @@ ggplot(df, aes(x=as.numeric(CONNECT), y=as.numeric(FWBscore))) + geom_point() + 
 
 Increasing financial skills has a positive relationship with life satisfaction. For every 1 point increase in financial skills, life satisfaction increases by .04 points.
 
-```{r, echo=FALSE, include = FALSE}
+```{r, echo=FALSE, include = FALSE, fig.align="center"}
 ggplot(df, aes(x=as.numeric(FSscore), y=as.numeric(SWB_1))) + geom_point() +
     geom_smooth(method = "lm") + theme_bw()
 ```
 
-```{r, echo=FALSE, include = FALSE}
+```{r, echo=FALSE, include = FALSE, fig.align="center"}
 ggplot(df, aes(x=as.numeric(FSscore), y=as.numeric(SWB_1))) + geom_point(alpha = 0.1) + 
   geom_smooth(method = "lm") + facet_grid(. ~ PPGENDER) + theme_bw()
 ```
 
-```{r, echo=FALSE, include = FALSE}
+```{r, echo=FALSE, include = FALSE, fig.align="center"}
 ggplot(df, aes(x=as.numeric(FSscore), y=as.numeric(SWB_1))) + geom_point(alpha=0.1) + geom_smooth(method = "lm") + facet_wrap(~ PPETHM, ncol = 2) + theme_bw()
 ```
 
@@ -79,14 +79,14 @@ ggplot(df, aes(x=as.numeric(FSscore), y=as.numeric(SWB_1))) + geom_point(alpha=0
 
 For every 1 unit that education improves, life satisfaction increases by 0.13 points. 
 
-```{r eval=FALSE, include=FALSE}
+```{r eval=FALSE, include=FALSE, fig.align="center"}
 ggplot(df, aes(x=as.numeric(PPEDUC), y= as.numeric(SWB_1))) + geom_point() +
     geom_smooth(method = "lm") + theme_bw()
 ```
 
 For every 1 unit that income improves, life satisfaction increases by 0.10 points. 
 
-```{r, echo=FALSE, include=FALSE}
+```{r, echo=FALSE, include=FALSE, fig.align="center"}
 ggplot(df, aes(x=as.numeric(PPINCIMP), y=as.numeric(SWB_1))) + geom_point() +
     geom_smooth(method = "lm") + theme_bw()
 ```
@@ -98,14 +98,14 @@ Based on the above analyses, more direct approaches than increasing financial sk
 
 For males, every one unit in education increased leads to 0.16 increase in life satisfaction score, whereas for females every one unit in education increased leads to 0.11 increase in life satisfaction score. Therefore, the initiative would be slightly more effective for males than females. 
 
-```{r, echo=FALSE}
+```{r, echo=FALSE, fig.align="center"}
 ggplot(df, aes(x=as.numeric(PPEDUC), y=as.numeric(SWB_1))) + geom_point(alpha = 0.1) + 
   geom_smooth(method = "lm") + facet_grid(. ~ PPGENDER) + theme_bw() + xlab("Education Level") + ylab("Life Satisfaction Level") + ggtitle("Education and Life Satisfaction by Gender")
 ```
 
 Among different racial groups, the 'Other, Non-Hispanic' category would see the greatest increase in life satisfaction for every 1 unit of education increased. On the other hand, the Hispanic category has a negative relationship with education, where every unit of education increased leads to a slight decrease in life satisfaction.
 
-```{r, echo=FALSE}
+```{r, echo=FALSE, fig.align="center"}
 ggplot(df, aes(x=as.numeric(PPEDUC), y=as.numeric(SWB_1))) + geom_point(alpha = 0.1) +   geom_smooth(method = "lm") + facet_wrap(. ~ PPETHM, ncol = 2) + theme_bw() + xlab("Education Level") + ylab("Life Satisfaction Level") + ggtitle("Education and Life Satisfaction by Race")
 ```
 
@@ -115,7 +115,7 @@ ggplot(df, aes(x=as.numeric(PPEDUC), y=as.numeric(SWB_1))) + geom_point(alpha = 
 Health is an important indicator of life satisfaction, and related to health is the availability of a health insurance plan. Individuals who said reported that they did have a health insurance plan had on average a 0.3 higher life satisfaction score.
 
 
-``` {r , echo = FALSE}
+``` {r , echo = FALSE, fig.align="center"}
 ggplot(df, aes(x = BENEFITS_1, y= as.numeric(SWB_1))) + geom_boxplot() +
   theme_bw() + xlab("Health Insurance Coverage") + ylab("Life Satisfaction Score") + ggtitle("Life Satisfaction and Health Insurance Coverage")
 ```
@@ -138,7 +138,7 @@ Note that any data that is coded as Refused or Response Not Written to Database 
 To examine the effect of life satisfaction on financial well-being, I ran a linear model and found a significant positive relationship between life satisfaction and financial well-being.
 
 
-``` {r, echo = FALSE, results = 'asis'}
+``` {r, echo = FALSE, results = 'asis', fig.align="center"}
 #financial well being to swb
 mod.swb.fwb <- lm(as.numeric(FWBscore) ~ as.numeric(SWB_1), data = df)
 stargazer(mod.swb.fwb, header = F, title = "Financial Well Being and Life Satisfaction", type = "html", out="financialwellbeing.html", out.header=TRUE)
@@ -146,7 +146,7 @@ stargazer(mod.swb.fwb, header = F, title = "Financial Well Being and Life Satisf
 
 To examine the effect of life satisfaction on psychological connectedness, I ran a linear model and found a significant positive relationship between life satisfaction and psychological connectedness.
 
-``` {r, echo = FALSE, results = 'asis'}
+``` {r, echo = FALSE, results = 'asis', fig.align="center"}
 mod.swb.cn <- lm(as.numeric(CONNECT) ~ SWB_1, data = df)
 stargazer(mod.swb.cn, header = F, title = "Financial Well Being and Psychological Connectedness", type = "html", out="financialwellbeing.html", out.header=TRUE)
 ```
@@ -162,7 +162,7 @@ stargazer(mod.fwb.cn, header = F, title = "Psychological Connectedness and Finan
 
 To examine the effect of financial skills on financial well-being, I ran a linear model and found a significant positive relationship between psychological connectedness and financial skills.
 
-``` {r, echo = FALSE, results = 'asis'}
+``` {r, echo = FALSE, results = 'asis', fig.align="center"}
 #financial skills and swb
 mod.fs.swb <- lm(as.numeric(SWB_1) ~ as.numeric(FSscore), df)
 stargazer(mod.fs.swb, header = F, title = "Financial Skills and Life Satisfaction", type = "html", out="financialwellbeing.html", out.header=TRUE)
@@ -170,7 +170,7 @@ stargazer(mod.fs.swb, header = F, title = "Financial Skills and Life Satisfactio
 
 To examine the effect of education on life satisfaction, I ran a linear model and found a significant positive relationship between education and life satisfaction.
 
-``` {r, echo = FALSE, results = 'asis'}
+``` {r, echo = FALSE, results = 'asis', fig.align="center"}
 #edu and swb
 mod.edu.swb <- lm(as.numeric(SWB_1) ~ as.numeric(PPEDUC), df)
 stargazer(mod.edu.swb, header = F, title = "Education and Life Satisfaction", type = "html", out="financialwellbeing.html", out.header=TRUE)
@@ -178,7 +178,7 @@ stargazer(mod.edu.swb, header = F, title = "Education and Life Satisfaction", ty
 
 To examine the effect of income on life satisfaction, I ran a linear model and found a significant positive relationship between income and life satisfaction.
 
-``` {r, echo = FALSE, results = 'asis'}
+``` {r, echo = FALSE, results = 'asis', fig.align="center"}
 #income and swb
 mod.inc.swb <- lm(as.numeric(SWB_1) ~ as.numeric(PPINCIMP), df)
 stargazer(mod.inc.swb, header = F, title = "Income and Life Satisfaction", type = "html", out="financialwellbeing.html", out.header=TRUE)
@@ -186,37 +186,37 @@ stargazer(mod.inc.swb, header = F, title = "Income and Life Satisfaction", type 
 
 After finding the greatest change in life satisfaction due to education levels, I faceted by gender and racial groups in different linear models by subsetting only the characteristics I was interested in.
 
-``` {r, echo = FALSE, results = 'asis'}
+``` {r, echo = FALSE, results = 'asis', fig.align="center"}
 #financial skills and swb (male)
 mod.edu.swb.male <- lm(as.numeric(SWB_1) ~ as.numeric(PPEDUC), data = subset(df, PPGENDER == "Male"))
 stargazer(mod.edu.swb.male, header = F, title = "Education and Life Satisfaction (Males)", type = "html", out="financialwellbeing.html", out.header=TRUE)
 ```
 
-``` {r, echo = FALSE, results = 'asis'}
+``` {r, echo = FALSE, results = 'asis', fig.align="center"}
 #financial skills and swb (female)
 mod.edu.swb.female <- lm(as.numeric(SWB_1) ~ as.numeric(PPEDUC), data = subset(df, PPGENDER == "Female"))
 stargazer(mod.edu.swb.female, header = F, title = "Education and Life Satisfaction (Females)", type = "html", out="financialwellbeing.html", out.header=TRUE)
 ```
  
-``` {r, echo = FALSE, results = 'asis'}
+``` {r, echo = FALSE, results = 'asis', fig.align="center"}
 #education and swb (white)
 mod.edu.swb.white <- lm(as.numeric(SWB_1) ~ as.numeric(PPEDUC), data = subset(df, PPETHM == "White, Non-Hispanic"))
 stargazer(mod.edu.swb.white, header = F, title = "Education and Life Satisfaction (White)", type = "html", out="financialwellbeing.html", out.header=TRUE)
 ```
 
-``` {r, echo = FALSE, results = 'asis'}
+``` {r, echo = FALSE, results = 'asis', fig.align="center"}
 #education and swb (black)
 mod.edu.swb.black <- lm(as.numeric(SWB_1) ~ as.numeric(PPEDUC), data = subset(df, PPETHM == "Black, Non-Hispanic"))
 stargazer(mod.edu.swb.black, header = F, title = "Education and Life Satisfaction (Black)", type = "html", out="financialwellbeing.html", out.header=TRUE)
 ```
 
-``` {r, echo = FALSE, results = 'asis'}
+``` {r, echo = FALSE, results = 'asis', fig.align="center"}
 #education and swb (black)
 mod.edu.swb.other <- lm(as.numeric(SWB_1) ~ as.numeric(PPEDUC), data = subset(df, PPETHM == "Other, Non-Hispanic"))
 stargazer(mod.edu.swb.other, header = F, title = "Education and Life Satisfaction (Other, Non-Hispanic)", type = "html", out="financialwellbeing.html", out.header=TRUE)
 ```
 
-``` {r, echo = FALSE, results = 'asis'}
+``` {r, echo = FALSE, results = 'asis', fig.align="center"}
 #education and swb (black)
 mod.edu.swb.hispanic <- lm(as.numeric(SWB_1) ~ as.numeric(PPEDUC), data = subset(df, PPETHM == "Hispanic"))
 stargazer(mod.edu.swb.hispanic, header = F, title = "Education and Life Satisfaction (Hispanic)", type = "html", out="financialwellbeing.html", out.header=TRUE)
@@ -226,7 +226,7 @@ stargazer(mod.edu.swb.hispanic, header = F, title = "Education and Life Satisfac
 
 I ran a linear model to test the tie between health insurance benefits and life satisfaction. There is a positive significant relationship between having health insurance benefits and life satisfaction.
 
-``` {r, echo = FALSE, results = 'asis'}
+``` {r, echo = FALSE, results = 'asis', fig.align="center"}
 #health insurance and swb
 
 mod.hi.swb <- lm(as.numeric(SWB_1) ~ BENEFITS_1, df)

@@ -16,7 +16,7 @@
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<link href="site_libs/bootstrap-3.3.5/css/cosmo.min.css" rel="stylesheet" />
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
@@ -69,6 +69,7 @@ h6 {
 }
 </style>
 
+<link rel="stylesheet" href="styles.css" type="text/css" />
 
 </head>
 
@@ -212,46 +213,51 @@ $(document).ready(function () {
 </div>
 
 
+<div id="introduction-and-about-the-data" class="section level2">
+<h2>Introduction and About the Data</h2>
+<p>Naturally occurring arsenic is poisonous above certain levels, and may be present in some groundwater sources. This is a problem in Bangladesh, where citizens get their water from local wells. Arsenic contamination varies widely: while one family’s well may be safe, a neighbor’s well may have unsafe levels of arsenic. An NGO focusing on water safety recently completed a survey of almost fifty thousand households in three regions of Bangladesh. The survey interviewed households to better understand two main phenomena. First, what factors affect well switching? Second, does arsenic cause a financial burden for families with unsafe levels of arsenic in their water? For the purposes of this study, wells with any arsenic presence should be considered as problematic for human consumption, with higher levels being increasingly toxic.</p>
+<p>The dataset wellsdata.Rds contains information on 49274 households. These households were educated about arsenic poisoning and provided information about arsenic levels in their local wells. If the levels were unsafe, households were encouraged to switch their water source to other local options. The households were visited one year later, and data was collected on whether or not the family had switched wells. This is recorded in the variable Switch, equal to 1 if the household switched and 0 otherwise.</p>
 <div id="part-1" class="section level3">
 <h3>PART 1</h3>
 <p>The presence of arsenic in a well does lead to an increase in percentage of household income spent on healthcare. When there is no arsenic in the well, the percentage of household income spent on healthcare is on average .07%. When there is arsenic in the well, the percentage of household income spent on healthcare is on average .11%.</p>
 <p>When analyzing this effect by region, it is found that for Region 1 there is an average of 0.06% increase in percentage of household income spent on healthcare when arsenic is present. For Region 2, there is an average of 0.02% increase in percentage of household income spent on healthcare when arsenic is present. For Region 3, there is an average of .05% increase in percentage of household income spent on healthcare when arsenic is precent.</p>
 <p>Therefore, the regional findings suggest that in term of impoverishment increased through increased spending on healthcare caused by arsenic found in wells, Region 1 has the largest difference when comparing percentage of household income spent on healthcare when there is arsenic present in the well.</p>
-<p><img src="arsenicinwells_files/figure-html/unnamed-chunk-2-1.png" width="672" /><img src="arsenicinwells_files/figure-html/unnamed-chunk-2-2.png" width="672" /></p>
+<p><img src="arsenicinwells_files/figure-html/unnamed-chunk-2-1.png" width="672" style="display: block; margin: auto;" /><img src="arsenicinwells_files/figure-html/unnamed-chunk-2-2.png" width="672" style="display: block; margin: auto;" /></p>
 </div>
 <div id="part-2" class="section level3">
 <h3>PART 2</h3>
 </div>
+</div>
 <div id="relationship-to-owner-predict-switch" class="section level2">
 <h2>RELATIONSHIP TO OWNER PREDICT SWITCH</h2>
 <p>Individuals were surveyed about their relationship with the well owner, with the assumption that information about the well could be spread differently depending on how close of a tie that the individual had with the well owner. People who reported that the well owner was close family on average had a 70% likelihood of switching wells. People who reported that the well owner was a neighbor on average had a 50% likelihood of switching wells. Lastly, though not significant and therefore uncertain due to a wide confidence interval, people who reported that the well owner was in the same bari had on average a 70% likelihood of switching wells.</p>
-<p><img src="arsenicinwells_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+<p><img src="arsenicinwells_files/figure-html/unnamed-chunk-3-1.png" width="672" style="display: block; margin: auto;" /></p>
 </div>
 <div id="reported-status-of-well-predicted-switch" class="section level2">
 <h2>REPORTED STATUS OF WELL PREDICTED SWITCH</h2>
 <p>If people know that they the status of the well is unsafe, on average, they have an 86% proability of switching. If people don’t know the status of the well, they also have an 86% percent chance of switching on average. However, the people who don’t know the status of the well also have the most uncertain outcomes. The confidence interval ranges from a 68% cchance of swtiching to a 95% chance of switching, and the results are not significant. This indicates that people who don’t know the status of a well are a vulnerable group to the negative effects of wells that are contaminated by arsenic.</p>
-<p><img src="arsenicinwells_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+<p><img src="arsenicinwells_files/figure-html/unnamed-chunk-4-1.png" width="672" style="display: block; margin: auto;" /></p>
 </div>
 <div id="how-know-status-of-well-predict-switch" class="section level2">
 <h2>HOW KNOW STATUS OF WELL PREDICT SWITCH</h2>
 <p>(Dropped responses that were not coded in codebook, 1, 2, and 3 included only)</p>
 <p>Individuals found out about the status of the well in various ways. When surveyed about how they found out about the status of the well, people who reported that they knew about the status of the well through a CU Result were on average 86% likely to switch. People who said they found out about the status of the well through the paint were on average 58% likely to switch. People who found out about the status of the well through other means were on average 60% likely to switch, but the results of people who found out about the status of the well through other means are not significant and therefore uncertain. These results indicate that a CU Card is again quite an important determinanat for well switching in households with arsenic in their wells.</p>
-<p><img src="arsenicinwells_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+<p><img src="arsenicinwells_files/figure-html/unnamed-chunk-5-1.png" width="672" style="display: block; margin: auto;" /></p>
 </div>
 <div id="having-a-cu-medical-card-predict-switch" class="section level2">
 <h2>HAVING A CU MEDICAL CARD PREDICT SWITCH</h2>
 <p>People who have a CU Medical card are most likely to switch wells when a well is found to be contaminated with arsenic. On average, people who have a CU Medical card are 72% likely to switch. People who do not have a CU Medical card are only about 51% likely to switch. However, this result is not significant because it is more uncertain, the confidence interval of switching ranges from 40% to 61%.</p>
-<p><img src="arsenicinwells_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
+<p><img src="arsenicinwells_files/figure-html/unnamed-chunk-6-1.png" width="672" style="display: block; margin: auto;" /></p>
 </div>
 <div id="probability-of-switch-based-on-oldstat" class="section level2">
 <h2>PROBABILITY OF SWITCH BASED ON OLDSTAT</h2>
 <p>The probability of switching based on status which was visible on the well was the highest when there was a CU plate present, with an average of 95% switching based on wells that had a CU plate present. Comparatively, red paint (which is inferred to indicate a well that is not safe), only had an average of 80% switching and was not a significant result.</p>
-<p><img src="arsenicinwells_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
+<p><img src="arsenicinwells_files/figure-html/unnamed-chunk-7-1.png" width="672" style="display: block; margin: auto;" /></p>
 </div>
 <div id="probability-of-switch-based-on-newstat" class="section level2">
 <h2>PROBABILITY OF SWITCH BASED ON NEWSTAT</h2>
 <p>Meanwhile, the new plate indicators on the well seemed to successfully predict switching behavior. When the plate indicated that the well was unsafe, there was an 85% probability of switching on average. When the plate indicated that the well was safe, there was only a 17% probability of switching.</p>
-<p><img src="arsenicinwells_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
+<p><img src="arsenicinwells_files/figure-html/unnamed-chunk-8-1.png" width="672" style="display: block; margin: auto;" /></p>
 </div>
 <div id="recommendations" class="section level2">
 <h2>RECOMMENDATIONS</h2>
@@ -266,48 +272,352 @@ $(document).ready(function () {
 </div>
 <div id="problem-1" class="section level1">
 <h1>Problem 1</h1>
-<pre class="r"><code>summary(lm(pct_hhinc_healthcare ~ anyArs, data=wells))</code></pre>
-<pre><code>## 
-## Call:
-## lm(formula = pct_hhinc_healthcare ~ anyArs, data = wells)
-## 
-## Residuals:
-##       Min        1Q    Median        3Q       Max 
-## -0.109969 -0.009472  0.000189  0.009680  0.131871 
-## 
-## Coefficients:
-##              Estimate Std. Error t value Pr(&gt;|t|)    
-## (Intercept) 7.380e-02  6.643e-05 1110.91   &lt;2e-16 ***
-## anyArsTRUE  3.898e-02  7.283e-04   53.53   &lt;2e-16 ***
-## ---
-## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
-## 
-## Residual standard error: 0.01469 on 49272 degrees of freedom
-## Multiple R-squared:  0.05496,    Adjusted R-squared:  0.05494 
-## F-statistic:  2865 on 1 and 49272 DF,  p-value: &lt; 2.2e-16</code></pre>
-<pre class="r"><code>summary(lm(pct_hhinc_healthcare ~ anyArs * Region, data=wells))</code></pre>
-<pre><code>## 
-## Call:
-## lm(formula = pct_hhinc_healthcare ~ anyArs * Region, data = wells)
-## 
-## Residuals:
-##       Min        1Q    Median        3Q       Max 
-## -0.071731 -0.009175 -0.000146  0.009192  0.105814 
-## 
-## Coefficients:
-##                             Estimate Std. Error t value Pr(&gt;|t|)    
-## (Intercept)                0.0767417  0.0001005 763.584   &lt;2e-16 ***
-## anyArsTRUE                 0.0621012  0.0010867  57.148   &lt;2e-16 ***
-## RegionRegion 2            -0.0014337  0.0001517  -9.453   &lt;2e-16 ***
-## RegionRegion 3            -0.0086093  0.0001549 -55.566   &lt;2e-16 ***
-## anyArsTRUE:RegionRegion 2 -0.0253526  0.0016452 -15.410   &lt;2e-16 ***
-## anyArsTRUE:RegionRegion 3 -0.0556854  0.0017178 -32.416   &lt;2e-16 ***
-## ---
-## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
-## 
-## Residual standard error: 0.01402 on 49268 degrees of freedom
-## Multiple R-squared:  0.1382, Adjusted R-squared:  0.1381 
-## F-statistic:  1579 on 5 and 49268 DF,  p-value: &lt; 2.2e-16</code></pre>
+<table style="text-align:center">
+<caption>
+<strong>Arsenic in Wells and % of Income Spent on Healthcare</strong>
+</caption>
+<tr>
+<td colspan="2" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+<em>Dependent variable:</em>
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td colspan="1" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+pct_hhinc_healthcare
+</td>
+</tr>
+<tr>
+<td colspan="2" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+anyArs
+</td>
+<td>
+0.039<sup>***</sup>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+(0.001)
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Constant
+</td>
+<td>
+0.074<sup>***</sup>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+(0.0001)
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td colspan="2" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Observations
+</td>
+<td>
+49,274
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+R<sup>2</sup>
+</td>
+<td>
+0.055
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Adjusted R<sup>2</sup>
+</td>
+<td>
+0.055
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Residual Std. Error
+</td>
+<td>
+0.015 (df = 49272)
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+F Statistic
+</td>
+<td>
+2,865.240<sup>***</sup> (df = 1; 49272)
+</td>
+</tr>
+<tr>
+<td colspan="2" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+<em>Note:</em>
+</td>
+<td style="text-align:right">
+<sup><em></sup>p&lt;0.1; <sup><strong></sup>p&lt;0.05; <sup></strong></em></sup>p&lt;0.01
+</td>
+</tr>
+</table>
+<table style="text-align:center">
+<caption>
+<strong>Arsenic in Wells and % of Income Spent on Healthcare by Region</strong>
+</caption>
+<tr>
+<td colspan="2" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+<em>Dependent variable:</em>
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td colspan="1" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+pct_hhinc_healthcare
+</td>
+</tr>
+<tr>
+<td colspan="2" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+anyArs
+</td>
+<td>
+0.062<sup>***</sup>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+(0.001)
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+RegionRegion 2
+</td>
+<td>
+-0.001<sup>***</sup>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+(0.0002)
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+RegionRegion 3
+</td>
+<td>
+-0.009<sup>***</sup>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+(0.0002)
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+anyArsTRUE:RegionRegion 2
+</td>
+<td>
+-0.025<sup>***</sup>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+(0.002)
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+anyArsTRUE:RegionRegion 3
+</td>
+<td>
+-0.056<sup>***</sup>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+(0.002)
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Constant
+</td>
+<td>
+0.077<sup>***</sup>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+(0.0001)
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td colspan="2" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Observations
+</td>
+<td>
+49,274
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+R<sup>2</sup>
+</td>
+<td>
+0.138
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Adjusted R<sup>2</sup>
+</td>
+<td>
+0.138
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Residual Std. Error
+</td>
+<td>
+0.014 (df = 49268)
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+F Statistic
+</td>
+<td>
+1,579.500<sup>***</sup> (df = 5; 49268)
+</td>
+</tr>
+<tr>
+<td colspan="2" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+<em>Note:</em>
+</td>
+<td style="text-align:right">
+<sup><em></sup>p&lt;0.1; <sup><strong></sup>p&lt;0.05; <sup></strong></em></sup>p&lt;0.01
+</td>
+</tr>
+</table>
 </div>
 <div id="problem-2" class="section level1">
 <h1>Problem 2</h1>
